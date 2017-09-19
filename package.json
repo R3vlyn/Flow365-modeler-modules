@@ -1,0 +1,19 @@
+{
+  "name": "flow365modules",
+  "version": "1.0.0",
+  "description": "Create BPMN-models and control them as a module for Viper",
+  "main": "asn1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/R3vlyn/Flow365-modeler-modules.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/R3vlyn/Flow365-modeler-modules/issues"
+  },
+  "homepage": "https://github.com/R3vlyn/Flow365-modeler-modules#readme"
+}
