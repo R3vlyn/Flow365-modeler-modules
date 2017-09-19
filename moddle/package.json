@@ -1,0 +1,78 @@
+{
+  "_from": "moddle@^1.0.0",
+  "_id": "moddle@1.0.0",
+  "_inBundle": false,
+  "_integrity": "sha1-kDTZeGCHtnEWkyq9VsD3xmrRJJc=",
+  "_location": "/moddle",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "moddle@^1.0.0",
+    "name": "moddle",
+    "escapedName": "moddle",
+    "rawSpec": "^1.0.0",
+    "saveSpec": null,
+    "fetchSpec": "^1.0.0"
+  },
+  "_requiredBy": [
+    "/bpmn-moddle",
+    "/moddle-xml"
+  ],
+  "_resolved": "https://registry.npmjs.org/moddle/-/moddle-1.0.0.tgz",
+  "_shasum": "9034d9786087b67116932abd56c0f7c66ad12497",
+  "_spec": "moddle@^1.0.0",
+  "_where": "D:\\Documents\\KSD Groep\\Camunda Project\\Flow365\\BPMN-Service-modeler\\node_modules\\bpmn-moddle",
+  "author": {
+    "name": "Nico Rehwaldt",
+    "url": "https://github.com/Nikku"
+  },
+  "bugs": {
+    "url": "https://github.com/bpmn-io/moddle/issues"
+  },
+  "bundleDependencies": false,
+  "contributors": [
+    {
+      "name": "bpmn.io contributors",
+      "url": "https://github.com/bpmn-io"
+    }
+  ],
+  "dependencies": {
+    "lodash": "^3.0.0"
+  },
+  "deprecated": false,
+  "description": "A library for importing meta-model based file formats into JS",
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "grunt": "~0.4.2",
+    "grunt-contrib-connect": "~0.6.0",
+    "grunt-contrib-jshint": "~0.7.2",
+    "grunt-contrib-watch": "~0.5.0",
+    "grunt-mocha-test": "^0.12.4",
+    "grunt-release": "^0.7.0",
+    "load-grunt-tasks": "~0.3.0",
+    "mocha": "^2.1.0"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "homepage": "https://github.com/bpmn-io/moddle#readme",
+  "keywords": [
+    "model",
+    "meta-model",
+    "xml",
+    "xsd",
+    "import",
+    "export"
+  ],
+  "license": "MIT",
+  "name": "moddle",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bpmn-io/moddle.git"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "version": "1.0.0"
+}

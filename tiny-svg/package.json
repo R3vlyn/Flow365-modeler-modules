@@ -1,0 +1,82 @@
+{
+  "_from": "tiny-svg@^0.1.1",
+  "_id": "tiny-svg@0.1.1",
+  "_inBundle": false,
+  "_integrity": "sha1-GFyOr3CHVDL9/5jcF5Cpv69l/qs=",
+  "_location": "/tiny-svg",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "tiny-svg@^0.1.1",
+    "name": "tiny-svg",
+    "escapedName": "tiny-svg",
+    "rawSpec": "^0.1.1",
+    "saveSpec": null,
+    "fetchSpec": "^0.1.1"
+  },
+  "_requiredBy": [
+    "/bpmn-js",
+    "/diagram-js",
+    "/diagram-js-origin"
+  ],
+  "_resolved": "https://registry.npmjs.org/tiny-svg/-/tiny-svg-0.1.1.tgz",
+  "_shasum": "185c8eaf70875432fdff98dc1790a9bfaf65feab",
+  "_spec": "tiny-svg@^0.1.1",
+  "_where": "D:\\Documents\\KSD Groep\\Camunda Project\\Flow365\\BPMN-Service-modeler\\node_modules\\bpmn-js",
+  "author": {
+    "name": "Nico Rehwaldt",
+    "email": "git_nikku@nixis.de"
+  },
+  "bugs": {
+    "url": "https://github.com/Nikku/tiny-svg/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "A minimal toolbelt for builing fast SVG-based applications",
+  "devDependencies": {
+    "bundle-collapser": "^1.2.1",
+    "chai": "^1.9.1",
+    "eslint": "^3.10.2",
+    "eslint-plugin-mocha": "^4.7.0",
+    "grunt": "^0.4.5",
+    "grunt-browserify": "^3.0.1",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-compress": "^0.11.0",
+    "grunt-contrib-uglify": "^0.5.1",
+    "grunt-eslint": "^19.0.0",
+    "grunt-karma": "^2.0.0",
+    "grunt-release": "^0.7.0",
+    "karma": "^0.13.0",
+    "karma-browserify": "^5.1.0",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^0.1.2",
+    "karma-firefox-launcher": "^0.1.3",
+    "karma-ie-launcher": "^0.1.4",
+    "karma-mocha": "^0.1.7",
+    "karma-phantomjs-launcher": "0.1.2",
+    "karma-sauce-launcher": "^0.2.10",
+    "load-grunt-tasks": "^0.3.0",
+    "mocha": "^1.21.4",
+    "time-grunt": "^0.3.0"
+  },
+  "homepage": "https://github.com/Nikku/tiny-svg",
+  "keywords": [
+    "svg",
+    "library",
+    "geometry"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "tiny-svg",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nikku/tiny-svg.git"
+  },
+  "scripts": {
+    "all": "grunt",
+    "dev": "grunt auto-test",
+    "test": "grunt test"
+  },
+  "version": "0.1.1"
+}

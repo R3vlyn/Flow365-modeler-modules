@@ -1,0 +1,88 @@
+{
+  "_from": "diagram-js-direct-editing@^0.17.1",
+  "_id": "diagram-js-direct-editing@0.17.1",
+  "_inBundle": false,
+  "_integrity": "sha1-r9SnfhSbN95mQ7q56Rn+E98JsNU=",
+  "_location": "/diagram-js-direct-editing",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "diagram-js-direct-editing@^0.17.1",
+    "name": "diagram-js-direct-editing",
+    "escapedName": "diagram-js-direct-editing",
+    "rawSpec": "^0.17.1",
+    "saveSpec": null,
+    "fetchSpec": "^0.17.1"
+  },
+  "_requiredBy": [
+    "/bpmn-js"
+  ],
+  "_resolved": "https://registry.npmjs.org/diagram-js-direct-editing/-/diagram-js-direct-editing-0.17.1.tgz",
+  "_shasum": "afd4a77e149b37de6643bab9e919fe13df09b0d5",
+  "_spec": "diagram-js-direct-editing@^0.17.1",
+  "_where": "D:\\Documents\\KSD Groep\\Camunda Project\\Flow365\\BPMN-Service-modeler\\node_modules\\bpmn-js",
+  "author": {
+    "name": "bpmn.io"
+  },
+  "bugs": {
+    "url": "https://github.com/bpmn-io/diagram-js-direct-editing/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "lodash": "^3.0.1",
+    "min-dom": "^0.2.0"
+  },
+  "deprecated": false,
+  "description": "Direct editing support for diagram-js",
+  "devDependencies": {
+    "brfs": "^1.2.0",
+    "browserify": "^13.1.1",
+    "chai": "^2.3.0",
+    "diagram-js": "^0.17.0",
+    "eslint": "^2.11.1",
+    "eslint-plugin-mocha": "^2.2.0",
+    "grunt": "^0.4.4",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-connect": "^0.6.0",
+    "grunt-contrib-copy": "^0.5.0",
+    "grunt-contrib-uglify": "^0.4.0",
+    "grunt-contrib-watch": "^0.5.0",
+    "grunt-eslint": "^18.1.0",
+    "grunt-karma": "^0.8.0",
+    "grunt-release": "^0.7.0",
+    "karma": "^1.3.0",
+    "karma-browserify": "^2.0.0",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-firefox-launcher": "^1.0.0",
+    "karma-ie-launcher": "^0.1.4",
+    "karma-mocha": "^0.1.10",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "load-grunt-tasks": "^0.3.0",
+    "mocha": "^2.2.5",
+    "mocha-test-container-support": "^0.1.0",
+    "time-grunt": "^0.3.0",
+    "watchify": "^3.7.0"
+  },
+  "homepage": "https://github.com/bpmn-io/diagram-js-direct-editing#readme",
+  "keywords": [
+    "diagram-js",
+    "diagram-js-plugin"
+  ],
+  "license": "MIT",
+  "name": "diagram-js-direct-editing",
+  "peerDependencies": {
+    "diagram-js": "^0.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bpmn-io/diagram-js-direct-editing.git"
+  },
+  "scripts": {
+    "all": "grunt",
+    "dev": "grunt auto-test",
+    "test": "grunt test"
+  },
+  "version": "0.17.1"
+}

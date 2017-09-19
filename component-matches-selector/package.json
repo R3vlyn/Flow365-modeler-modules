@@ -1,0 +1,51 @@
+{
+  "_from": "component-matches-selector@^0.1.5",
+  "_id": "component-matches-selector@0.1.6",
+  "_inBundle": false,
+  "_integrity": "sha1-e2MOBOfgw7ABnzF0n9cK9e2Lly4=",
+  "_location": "/component-matches-selector",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "component-matches-selector@^0.1.5",
+    "name": "component-matches-selector",
+    "escapedName": "component-matches-selector",
+    "rawSpec": "^0.1.5",
+    "saveSpec": null,
+    "fetchSpec": "^0.1.5"
+  },
+  "_requiredBy": [
+    "/component-closest",
+    "/min-dom"
+  ],
+  "_resolved": "https://registry.npmjs.org/component-matches-selector/-/component-matches-selector-0.1.6.tgz",
+  "_shasum": "7b630e04e7e0c3b0019f31749fd70af5ed8b972e",
+  "_spec": "component-matches-selector@^0.1.5",
+  "_where": "D:\\Documents\\KSD Groep\\Camunda Project\\Flow365\\BPMN-Service-modeler\\node_modules\\min-dom",
+  "browser": {
+    "query": "component-query"
+  },
+  "bugs": {
+    "url": "https://github.com/component/matches-selector/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "component-query": "*"
+  },
+  "deprecated": false,
+  "description": "Check if an element matches a given selector",
+  "homepage": "https://github.com/component/matches-selector#readme",
+  "keywords": [
+    "match",
+    "element",
+    "selector"
+  ],
+  "license": "MIT",
+  "name": "component-matches-selector",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/component/matches-selector.git"
+  },
+  "version": "0.1.6"
+}

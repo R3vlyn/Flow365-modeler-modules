@@ -1,0 +1,64 @@
+{
+  "_from": "didi@^0.1.0",
+  "_id": "didi@0.1.1",
+  "_inBundle": false,
+  "_integrity": "sha1-aG5EaRucpSurG4nDxmqBdLMkmGQ=",
+  "_location": "/didi",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "didi@^0.1.0",
+    "name": "didi",
+    "escapedName": "didi",
+    "rawSpec": "^0.1.0",
+    "saveSpec": null,
+    "fetchSpec": "^0.1.0"
+  },
+  "_requiredBy": [
+    "/diagram-js"
+  ],
+  "_resolved": "https://registry.npmjs.org/didi/-/didi-0.1.1.tgz",
+  "_shasum": "686e44691b9ca52bab1b89c3c66a8174b3249864",
+  "_spec": "didi@^0.1.0",
+  "_where": "D:\\Documents\\KSD Groep\\Camunda Project\\Flow365\\BPMN-Service-modeler\\node_modules\\diagram-js",
+  "author": {
+    "name": "Vojta Jina",
+    "email": "vojta.jina@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/nikku/didi/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Dependency Injection for JavaScript",
+  "devDependencies": {
+    "chai": "~1.7",
+    "coffee-script": "~1.6",
+    "grunt": "~0.4",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-jshint": "~0.6",
+    "grunt-simple-mocha": "~0.4",
+    "mocha": "~1.12"
+  },
+  "homepage": "https://github.com/nikku/didi#readme",
+  "keywords": [
+    "di",
+    "inversion of control",
+    "dependency",
+    "injection",
+    "injector"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "name": "didi",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nikku/didi.git"
+  },
+  "scripts": {
+    "all": "grunt",
+    "test": "grunt test"
+  },
+  "version": "0.1.1"
+}

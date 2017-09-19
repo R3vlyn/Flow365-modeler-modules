@@ -1,0 +1,81 @@
+{
+  "_from": "diagram-js-origin@^0.15.1",
+  "_id": "diagram-js-origin@0.15.2",
+  "_inBundle": false,
+  "_integrity": "sha1-nOCpOXe7PDYdY8wX3YnfqcSF3y4=",
+  "_location": "/diagram-js-origin",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "diagram-js-origin@^0.15.1",
+    "name": "diagram-js-origin",
+    "escapedName": "diagram-js-origin",
+    "rawSpec": "^0.15.1",
+    "saveSpec": null,
+    "fetchSpec": "^0.15.1"
+  },
+  "_requiredBy": [
+    "/bpmn-js"
+  ],
+  "_resolved": "https://registry.npmjs.org/diagram-js-origin/-/diagram-js-origin-0.15.2.tgz",
+  "_shasum": "9ce0a93977bb3c361d63cc17dd89dfa9c485df2e",
+  "_spec": "diagram-js-origin@^0.15.1",
+  "_where": "D:\\Documents\\KSD Groep\\Camunda Project\\Flow365\\BPMN-Service-modeler\\node_modules\\bpmn-js",
+  "author": {
+    "name": "bpmn.io"
+  },
+  "bugs": {
+    "url": "https://github.com/bpmn-io/diagram-js-origin/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "tiny-svg": "^0.1.0"
+  },
+  "deprecated": false,
+  "description": "A origin crosshair for diagram-js",
+  "devDependencies": {
+    "brfs": "^1.2.0",
+    "chai": "^1.9.1",
+    "diagram-js": "^0.17.0",
+    "grunt": "~0.4.4",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-jshint": "~0.7.2",
+    "grunt-karma": "^2.0.0",
+    "grunt-release": "~0.13.0",
+    "jsondiffpatch": "^0.1.8",
+    "karma": "^1.3.0",
+    "karma-browserify": "^4.0.0",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-firefox-launcher": "^1.0.0",
+    "karma-ie-launcher": "~0.1.4",
+    "karma-mocha": "^0.1.7",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "load-grunt-tasks": "~0.3.0",
+    "mocha": "^1.21.4",
+    "mocha-test-container-support": "^0.1.0",
+    "phantomjs": "^2.1.7",
+    "time-grunt": "~0.3.0"
+  },
+  "homepage": "https://github.com/bpmn-io/diagram-js-origin#readme",
+  "keywords": [
+    "diagram-js",
+    "diagram-js-plugin"
+  ],
+  "license": "MIT",
+  "name": "diagram-js-origin",
+  "peerDependencies": {
+    "diagram-js": "<1.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bpmn-io/diagram-js-origin.git"
+  },
+  "scripts": {
+    "all": "grunt",
+    "dev": "grunt auto-test",
+    "test": "grunt test"
+  },
+  "version": "0.15.2"
+}

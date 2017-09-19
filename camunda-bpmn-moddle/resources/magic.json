@@ -1,0 +1,29 @@
+{
+    "name": "ViperElements",
+    "prefix": "ViperElements",
+    "uri": "http://magic",
+    "xml": {
+        "tagAlias": "lowerCase"
+    },
+    "associations": [],
+    "types": [
+        {
+            "name": "ViperStartTrigger",
+            "extends": [
+                "bpmn:StartEvent"
+            ],
+            "properties": [
+                {
+                    "name": "triggerCrudType",
+                    "isAttr": true,
+                    "type": "String"
+                },
+                {
+                    "name": "triggerObject",
+                    "isAttr": true,
+                    "type": "String"
+                }
+            ]
+        }
+    ]
+}

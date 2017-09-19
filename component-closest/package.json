@@ -1,0 +1,55 @@
+{
+  "_from": "component-closest@^0.1.4",
+  "_id": "component-closest@0.1.4",
+  "_inBundle": false,
+  "_integrity": "sha1-W3L8UtkGB+dRFcr9w7B+JzSN5xs=",
+  "_location": "/component-closest",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "component-closest@^0.1.4",
+    "name": "component-closest",
+    "escapedName": "component-closest",
+    "rawSpec": "^0.1.4",
+    "saveSpec": null,
+    "fetchSpec": "^0.1.4"
+  },
+  "_requiredBy": [
+    "/component-delegate",
+    "/min-dom"
+  ],
+  "_resolved": "https://registry.npmjs.org/component-closest/-/component-closest-0.1.4.tgz",
+  "_shasum": "5b72fc52d90607e75115cafdc3b07e27348de71b",
+  "_spec": "component-closest@^0.1.4",
+  "_where": "D:\\Documents\\KSD Groep\\Camunda Project\\Flow365\\BPMN-Service-modeler\\node_modules\\min-dom",
+  "author": {
+    "name": "Jonathan Ong"
+  },
+  "browser": {
+    "matches-selector": "component-matches-selector"
+  },
+  "bugs": {
+    "url": "https://github.com/component/closest/issues"
+  },
+  "bundleDependencies": false,
+  "component": {
+    "scripts": {
+      "closest/index.js": "index.js"
+    }
+  },
+  "dependencies": {
+    "component-matches-selector": "~0.1.5"
+  },
+  "deprecated": false,
+  "description": "Find the closest ancestor matching a selector string",
+  "homepage": "https://github.com/component/closest#readme",
+  "license": "MIT",
+  "main": "index.js",
+  "name": "component-closest",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/component/closest.git"
+  },
+  "version": "0.1.4"
+}

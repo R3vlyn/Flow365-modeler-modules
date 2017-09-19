@@ -1,0 +1,89 @@
+{
+  "_from": "moddle-xml@^1.0.0",
+  "_id": "moddle-xml@1.0.0",
+  "_inBundle": false,
+  "_integrity": "sha1-eAHkQB69woWVLrabZlqi7rb8Xjc=",
+  "_location": "/moddle-xml",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "moddle-xml@^1.0.0",
+    "name": "moddle-xml",
+    "escapedName": "moddle-xml",
+    "rawSpec": "^1.0.0",
+    "saveSpec": null,
+    "fetchSpec": "^1.0.0"
+  },
+  "_requiredBy": [
+    "/bpmn-moddle"
+  ],
+  "_resolved": "https://registry.npmjs.org/moddle-xml/-/moddle-xml-1.0.0.tgz",
+  "_shasum": "7801e4401ebdc285952eb69b665aa2eeb6fc5e37",
+  "_spec": "moddle-xml@^1.0.0",
+  "_where": "D:\\Documents\\KSD Groep\\Camunda Project\\Flow365\\BPMN-Service-modeler\\node_modules\\bpmn-moddle",
+  "author": {
+    "name": "Nico Rehwaldt",
+    "url": "https://github.com/Nikku"
+  },
+  "bugs": {
+    "url": "https://github.com/bpmn-io/moddle-xml/issues"
+  },
+  "bundleDependencies": false,
+  "contributors": [
+    {
+      "name": "bpmn.io contributors",
+      "url": "https://github.com/bpmn-io"
+    }
+  ],
+  "dependencies": {
+    "lodash": "^3.0.0",
+    "moddle": "^1.0.0",
+    "sax": "~0.6.0",
+    "tiny-stack": "^0.1.0"
+  },
+  "deprecated": false,
+  "description": "XML import/export for documents described with moddle",
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "grunt": "~0.4.2",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-connect": "~0.6.0",
+    "grunt-contrib-jshint": "~0.7.2",
+    "grunt-contrib-watch": "~0.5.0",
+    "grunt-mocha-test": "^0.12.4",
+    "grunt-release": "^0.7.0",
+    "load-grunt-tasks": "~0.3.0",
+    "mocha": "^2.1.0"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "homepage": "https://github.com/bpmn-io/moddle-xml#readme",
+  "keywords": [
+    "moddle",
+    "model",
+    "meta-model",
+    "xml",
+    "xsd",
+    "import",
+    "export"
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/bpmn-io/moddle-xml/blob/master/LICENSE"
+    }
+  ],
+  "name": "moddle-xml",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bpmn-io/moddle-xml.git"
+  },
+  "scripts": {
+    "all": "grunt",
+    "dev": "grunt auto-test",
+    "test": "grunt test"
+  },
+  "version": "1.0.0"
+}

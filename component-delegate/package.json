@@ -1,0 +1,57 @@
+{
+  "_from": "component-delegate@^0.2.3",
+  "_id": "component-delegate@0.2.4",
+  "_inBundle": false,
+  "_integrity": "sha1-3FAodZ6mgb6oSj1rvWUCB8O+sTg=",
+  "_location": "/component-delegate",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "component-delegate@^0.2.3",
+    "name": "component-delegate",
+    "escapedName": "component-delegate",
+    "rawSpec": "^0.2.3",
+    "saveSpec": null,
+    "fetchSpec": "^0.2.3"
+  },
+  "_requiredBy": [
+    "/min-dom"
+  ],
+  "_resolved": "https://registry.npmjs.org/component-delegate/-/component-delegate-0.2.4.tgz",
+  "_shasum": "dc5028759ea681bea84a3d6bbd650207c3beb138",
+  "_spec": "component-delegate@^0.2.3",
+  "_where": "D:\\Documents\\KSD Groep\\Camunda Project\\Flow365\\BPMN-Service-modeler\\node_modules\\min-dom",
+  "browser": {
+    "closest": "component-closest",
+    "event": "component-event"
+  },
+  "bugs": {
+    "url": "https://github.com/component/delegate/issues"
+  },
+  "bundleDependencies": false,
+  "component": {
+    "scripts": {
+      "delegate/index.js": "index.js"
+    }
+  },
+  "dependencies": {
+    "component-closest": "*",
+    "component-event": "*"
+  },
+  "deprecated": false,
+  "description": "Event delegation component",
+  "homepage": "https://github.com/component/delegate#readme",
+  "keywords": [
+    "event",
+    "events",
+    "delegate",
+    "delegation"
+  ],
+  "name": "component-delegate",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/component/delegate.git"
+  },
+  "version": "0.2.4"
+}

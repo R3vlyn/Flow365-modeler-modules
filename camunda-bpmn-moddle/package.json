@@ -1,0 +1,120 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "camunda-bpmn-moddle@^0.8.1",
+        "scope": null,
+        "escapedName": "camunda-bpmn-moddle",
+        "name": "camunda-bpmn-moddle",
+        "rawSpec": "^0.8.1",
+        "spec": ">=0.8.1 <0.9.0",
+        "type": "range"
+      },
+      "D:\\Downloads\\Browser\\bpmn-js-examples-master\\bpmn-js-examples-master\\properties-panel"
+    ]
+  ],
+  "_from": "camunda-bpmn-moddle@>=0.8.1 <0.9.0",
+  "_id": "camunda-bpmn-moddle@0.8.1",
+  "_inCache": true,
+  "_location": "/camunda-bpmn-moddle",
+  "_nodeVersion": "4.4.3",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/camunda-bpmn-moddle-0.8.1.tgz_1472728370682_0.40275987540371716"
+  },
+  "_npmUser": {
+    "name": "bpmn-io",
+    "email": "bpmnio@camunda.com"
+  },
+  "_npmVersion": "2.15.1",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "camunda-bpmn-moddle@^0.8.1",
+    "scope": null,
+    "escapedName": "camunda-bpmn-moddle",
+    "name": "camunda-bpmn-moddle",
+    "rawSpec": "^0.8.1",
+    "spec": ">=0.8.1 <0.9.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/camunda-bpmn-moddle/-/camunda-bpmn-moddle-0.8.1.tgz",
+  "_shasum": "e3e23badf464b57e07f2055751618f9f72f0dd0e",
+  "_shrinkwrap": null,
+  "_spec": "camunda-bpmn-moddle@^0.8.1",
+  "_where": "D:\\Downloads\\Browser\\bpmn-js-examples-master\\bpmn-js-examples-master\\properties-panel",
+  "author": {
+    "name": "Nico Rehwaldt",
+    "url": "https://github.com/nikku"
+  },
+  "bugs": {
+    "url": "https://github.com/camunda/camunda-bpmn-moddle/issues"
+  },
+  "contributors": [
+    {
+      "name": "bpmn.io contributors",
+      "url": "https://github.com/bpmn-io"
+    }
+  ],
+  "dependencies": {
+    "lodash": "^3.0.0"
+  },
+  "description": "Camunda moddle extensions for BPMN 2.0",
+  "devDependencies": {
+    "async": "^1.5.0",
+    "bpmn-moddle": "^0.12.1",
+    "chai": "^1.9.1",
+    "eslint": "^2.11.1",
+    "eslint-plugin-mocha": "^2.2.0",
+    "glob": "^6.0.1",
+    "grunt": "^0.4.2",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-watch": "^0.5.0",
+    "grunt-eslint": "^18.1.0",
+    "grunt-mocha-test": "^0.11.0",
+    "grunt-release": "^0.13.0",
+    "jsondiffpatch": "^0.1.4",
+    "load-grunt-tasks": "^0.3.0",
+    "xsd-schema-validator": "^0.3.0"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "e3e23badf464b57e07f2055751618f9f72f0dd0e",
+    "tarball": "https://registry.npmjs.org/camunda-bpmn-moddle/-/camunda-bpmn-moddle-0.8.1.tgz"
+  },
+  "gitHead": "7554b2f4eaa7cd732f4d3701b520acadc0637262",
+  "homepage": "https://github.com/camunda/camunda-bpmn-moddle#readme",
+  "keywords": [
+    "bpmn",
+    "moddle",
+    "bpmn20",
+    "camunda",
+    "meta-model"
+  ],
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "bpmn-io",
+      "email": "bpmnio@camunda.com"
+    },
+    {
+      "name": "nikku",
+      "email": "git_nikku@nixis.de"
+    }
+  ],
+  "name": "camunda-bpmn-moddle",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/camunda/camunda-bpmn-moddle.git"
+  },
+  "scripts": {
+    "all": "grunt",
+    "test": "grunt test"
+  },
+  "version": "0.8.1"
+}

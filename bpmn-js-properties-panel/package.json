@@ -1,0 +1,140 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "bpmn-js-properties-panel@^0.13.1",
+        "scope": null,
+        "escapedName": "bpmn-js-properties-panel",
+        "name": "bpmn-js-properties-panel",
+        "rawSpec": "^0.13.1",
+        "spec": ">=0.13.1 <0.14.0",
+        "type": "range"
+      },
+      "D:\\Downloads\\Browser\\bpmn-js-examples-master\\bpmn-js-examples-master\\properties-panel"
+    ]
+  ],
+  "_from": "bpmn-js-properties-panel@>=0.13.1 <0.14.0",
+  "_id": "bpmn-js-properties-panel@0.13.1",
+  "_inCache": true,
+  "_location": "/bpmn-js-properties-panel",
+  "_nodeVersion": "6.0.0",
+  "_npmOperationalInternal": {
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/bpmn-js-properties-panel-0.13.1.tgz_1488456276515_0.19400953059084713"
+  },
+  "_npmUser": {
+    "name": "bpmn-io",
+    "email": "bpmnio@camunda.com"
+  },
+  "_npmVersion": "4.1.1",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "bpmn-js-properties-panel@^0.13.1",
+    "scope": null,
+    "escapedName": "bpmn-js-properties-panel",
+    "name": "bpmn-js-properties-panel",
+    "rawSpec": "^0.13.1",
+    "spec": ">=0.13.1 <0.14.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/bpmn-js-properties-panel/-/bpmn-js-properties-panel-0.13.1.tgz",
+  "_shasum": "006a367d29bb05d966b53f08c5d1de22a7861951",
+  "_shrinkwrap": null,
+  "_spec": "bpmn-js-properties-panel@^0.13.1",
+  "_where": "D:\\Downloads\\Browser\\bpmn-js-examples-master\\bpmn-js-examples-master\\properties-panel",
+  "author": {
+    "name": "Nico Rehwaldt",
+    "url": "https://github.com/nikku"
+  },
+  "bugs": {
+    "url": "https://github.com/bpmn-io/bpmn-js-properties-panel/issues"
+  },
+  "dependencies": {
+    "ids": "^0.2.0",
+    "inherits": "^2.0.1",
+    "lodash": "^3.0.1",
+    "min-dom": "^0.2.0",
+    "scroll-tabs": "^0.2.1",
+    "selection-update": "^0.1.2"
+  },
+  "description": "A simple properties panel for bpmn-js",
+  "devDependencies": {
+    "bpmn-js": "^0.18.1",
+    "bpmn-moddle": "^0.12.3",
+    "browserify": "^13.0.0",
+    "camunda-bpmn-moddle": "^0.9.1",
+    "chai": "~2.2.0",
+    "diagram-js": "^0.18.1",
+    "eslint": "^2.11.1",
+    "eslint-plugin-mocha": "^2.2.0",
+    "grunt": "^0.4.4",
+    "grunt-cli": "^1.2.0",
+    "grunt-eslint": "^18.1.0",
+    "grunt-karma": "^0.12.0",
+    "grunt-release": "^0.13.0",
+    "karma": "^0.13.0",
+    "karma-browserify": "^5.0.3",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-firefox-launcher": "^0.1.3",
+    "karma-ie-launcher": "^0.2.0",
+    "karma-mocha": "~0.1.0",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "karma-safari-launcher": "^0.1.1",
+    "karma-sinon-chai": "~0.3.0",
+    "karma-spec-reporter": "0.0.24",
+    "load-grunt-tasks": "^0.3.0",
+    "mocha": "^2.2.5",
+    "mocha-test-container-support": "0.2.0",
+    "phantomjs-prebuilt": "^2.1.4",
+    "sinon": "~1.14.1",
+    "sinon-chai": "~2.7.0",
+    "stringify": "^3.1.0",
+    "time-grunt": "^0.3.2",
+    "watchify": "^3.7.0"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "006a367d29bb05d966b53f08c5d1de22a7861951",
+    "tarball": "https://registry.npmjs.org/bpmn-js-properties-panel/-/bpmn-js-properties-panel-0.13.1.tgz"
+  },
+  "gitHead": "2ae69d9fb807258a88b36d6963a37157a42fdf3a",
+  "homepage": "https://github.com/bpmn-io/bpmn-js-properties-panel#readme",
+  "keywords": [
+    "bpmn-js",
+    "properties",
+    "properties-panel"
+  ],
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "bpmn-io",
+      "email": "bpmnio@camunda.com"
+    },
+    {
+      "name": "nikku",
+      "email": "git_nikku@nixis.de"
+    }
+  ],
+  "name": "bpmn-js-properties-panel",
+  "optionalDependencies": {},
+  "peerDependencies": {
+    "bpmn-js": ">=0.12 <0.21",
+    "diagram-js": ">=0.12 <0.20"
+  },
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bpmn-io/bpmn-js-properties-panel.git"
+  },
+  "scripts": {
+    "all": "grunt",
+    "dev": "grunt auto-test",
+    "test": "grunt test"
+  },
+  "version": "0.13.1"
+}

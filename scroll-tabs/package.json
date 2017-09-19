@@ -1,0 +1,78 @@
+{
+  "_from": "scroll-tabs@^0.2.1",
+  "_id": "scroll-tabs@0.2.1",
+  "_inBundle": false,
+  "_integrity": "sha1-dw1GK0D2M7nK5u7jUh94XEnaj28=",
+  "_location": "/scroll-tabs",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "scroll-tabs@^0.2.1",
+    "name": "scroll-tabs",
+    "escapedName": "scroll-tabs",
+    "rawSpec": "^0.2.1",
+    "saveSpec": null,
+    "fetchSpec": "^0.2.1"
+  },
+  "_requiredBy": [
+    "/bpmn-js-properties-panel"
+  ],
+  "_resolved": "https://registry.npmjs.org/scroll-tabs/-/scroll-tabs-0.2.1.tgz",
+  "_shasum": "770d462b40f633b9cae6eee3521f785c49da8f6f",
+  "_spec": "scroll-tabs@^0.2.1",
+  "_where": "D:\\Documents\\KSD Groep\\Camunda Project\\Flow365\\BPMN-Service-modeler\\node_modules\\bpmn-js-properties-panel",
+  "author": {
+    "name": "bpmn.io",
+    "email": "http://bpmn.io"
+  },
+  "bugs": {
+    "url": "https://github.com/bpmn-io/scroll-tabs/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "events": "^1.1.0",
+    "inherits": "^2.0.1",
+    "lodash": "^3.10.1",
+    "min-dom": "^0.2.0"
+  },
+  "deprecated": false,
+  "description": "A tab scrolling component",
+  "devDependencies": {
+    "browserify": "^13.0.0",
+    "chai": "^3.5.0",
+    "eslint": "^2.2.0",
+    "karma": "^0.13.21",
+    "karma-browserify": "^5.0.2",
+    "karma-mocha": "^0.2.2",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "karma-sinon-chai": "^1.2.0",
+    "lolex": "^1.4.0",
+    "mocha": "^2.4.5",
+    "phantomjs-prebuilt": "^2.1.4",
+    "sinon": "^1.17.3",
+    "sinon-chai": "^2.8.0",
+    "watchify": "^3.7.0"
+  },
+  "homepage": "https://github.com/bpmn-io/scroll-tabs#readme",
+  "keywords": [
+    "tabs",
+    "scroll",
+    "component",
+    "browser",
+    "browserify"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "scroll-tabs",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/bpmn-io/scroll-tabs.git"
+  },
+  "scripts": {
+    "test": "karma start",
+    "test:watch": "karma start --auto-watch --no-single-run",
+    "travis": "eslint *.js && npm run test"
+  },
+  "version": "0.2.1"
+}
