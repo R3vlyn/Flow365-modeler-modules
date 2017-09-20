@@ -2,44 +2,54 @@
 
 var entryFactory = require('bpmn-js-properties-panel/lib/factory/EntryFactory');
 
-var is = require('bpmn-js/lib/util/ModelUtil').is;
-
+var is = require('bpmn-js/lib/util/ModelUtil').is,
+        getBusinessObject = require('bpmn-js/lib/util/ModelUtil').getBusinessObject,
+        cmdHelper = require('../../../helper/CmdHelper');
 module.exports = function (group, element) {
-
     // Only return an entry, if the currently selected
     // element is a start event.
 
     if (is(element, 'bpmn:StartEvent')) {
-//    group.entries.push(entryFactory.selectBox({
-//      id : 'spell',
-//      description : 'Apply a black magic spell',
-//      label : 'Spell',
-//      modelProperty : 'spell'
-//    }));
 
-        group.entries.push(entryFactory.selectBox({
-            id: 'triggerCrudType',
-            label: 'triggerCrudType',
+        group.entries.push(entryFactory.comboBox({
+            id: 'Trigger',
+            label: 'Trigger',
             selectOptions: [
                 {name: 'Create', value: 'Create'},
                 {name: 'Update', value: 'Update'},
                 {name: 'Delete', value: 'Delete'}
             ],
-            modelProperty: 'triggerCrudType',
-            emptyParameter: false
+            emptyParameter: false,
+            modelProperty: 'Trigger',
+
+            get: function (element) {
+                var bo = getBusinessObject(element);
+
+                return {
+                    Trigger: bo.get('Viper:Trigger')
+                };
+            },
+
+            set: function (element, values) {
+                var bo = getBusinessObject(element);
+
+                return cmdHelper.updateBusinessObject(element, bo, {
+                    'Viper:Trigger': values.Trigger || undefined
+                });
+            },
+
+            validate: function (element, values, node) {
+                return !values.Trigger ? {Trigger: 'Must provide a value'} : {};
+            }
         }));
 
-        group.entries.push(entryFactory.selectBox({
-            id: 'triggerObject',
-            label: 'triggerObject',
-            selectOptions: [
-                {name: 'Inschrijving', value: 'Inschrijving'},
-                {name: 'Gebruiker', value: 'Gebruiker'},
-                {name: 'Cursus', value: 'Cursus'},
-                {name: 'Uitvoering', value: 'Uitvoering'}
-            ],
-            modelProperty: 'triggerObject',
-            emptyParameter: false
+        group.entries.push(entryFactory.textBox({
+            id: 'Object',
+            label: 'Object',
+            modelProperty: 'Object',
+            validate: function (element, values, node) {
+                return !values.Object ? {Object: 'Must provide a value'} : {};
+            }
         }));
     }
 };

@@ -1,6 +1,7 @@
 'use strict';
 
-var entryFactory = require('../../../../factory/EntryFactory');
+var entryFactory = require('../../../../factory/EntryFactory'),
+    getBusinessObject = require('bpmn-js/lib/util/ModelUtil').getBusinessObject;
 
 /**
  * Create an entry to modify the name of an an element.
@@ -15,17 +16,26 @@ var entryFactory = require('../../../../factory/EntryFactory');
  */
 module.exports = function(element, options) {
 
-  options = options || {};
-  var id = options.id || 'name',
-      label = options.label || 'Name',
-      modelProperty = options.modelProperty || 'name';
+    options = options || {};
+    var id = options.id || 'name',
+        label = options.label || 'Name',
+        modelProperty = options.modelProperty || 'name';
 
-  var nameEntry = entryFactory.textBox({
-    id: id,
-    label: label,
-    modelProperty: modelProperty
-  });
+    var nameEntry = entryFactory.textBox({
+        id: id,
+        label: label,
+        modelProperty: modelProperty,
+        validate: function(element, values, node) {
+            if (element.type === 'bpmn:UserTask') {
+                return !values[modelProperty] ? {
+                    [modelProperty]: 'Must provide a value'
+                } : {};
+            } else {
+                return {};
+            }
+        }
+    });
 
-  return [ nameEntry ];
+    return [nameEntry];
 
 };

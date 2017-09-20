@@ -17,7 +17,10 @@ module.exports = function(group, element) {
     var versionTagEntry = entryFactory.textField({
       id: 'versionTag',
       label: 'Version Tag',
-      modelProperty: 'versionTag'
+      modelProperty: 'versionTag',
+            validate: function (element, values, node) {
+                return !values.versionTag ? {versionTag: 'Must provide a Version Tag'} : {};
+            }
     });
 
     // in participants we have to change the default behavior of set and get

@@ -1,0 +1,29 @@
+{
+    "name": "Viper",
+    "prefix": "Viper",
+    "uri": "http://viper",
+    "xml": {
+        "tagAlias": "lowerCase"
+    },
+    "associations": [],
+    "types": [
+        {
+            "name": "ViperStartTrigger",
+            "extends": [
+                "bpmn:StartEvent"
+            ],
+            "properties": [
+                {
+                    "name": "Trigger",
+                    "isAttr": true,
+                    "type": "String"
+                },
+                {
+                    "name": "Object",
+                    "isAttr": true,
+                    "type": "String"
+                }
+            ]
+        }
+    ]
+}

@@ -9,8 +9,8 @@ var processProps = require('../bpmn/parts/ProcessProps'),
     eventProps = require('../bpmn/parts/EventProps'),
     linkProps = require('../bpmn/parts/LinkProps'),
     idProps = require('../bpmn/parts/IdProps'),
-    nameProps = require('../bpmn/parts/NameProps'),
-    executableProps = require('../bpmn/parts/ExecutableProps');
+    nameProps = require('../bpmn/parts/NameProps');
+    //executableProps = require('../bpmn/parts/ExecutableProps');
 
 // camunda properties
 var serviceTaskDelegateProps = require('./parts/ServiceTaskDelegateProps'),
@@ -37,7 +37,7 @@ function createGeneralTabGroups(element, bpmnFactory, elementRegistry, elementTe
   nameProps(generalGroup, element);
   processProps(generalGroup, element);
   versionTag(generalGroup, element);
-  executableProps(generalGroup, element);
+  //executableProps(generalGroup, element);
   elementTemplateChooserProps(generalGroup, element, elementTemplates);
 
   var customFieldsGroup = {

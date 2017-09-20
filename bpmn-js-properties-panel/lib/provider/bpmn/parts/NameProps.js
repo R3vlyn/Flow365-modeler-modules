@@ -13,8 +13,9 @@ module.exports = function(group, element) {
     }
 
     // name
+    if (!is(element, 'bpmn:Process')){
     group.entries = group.entries.concat(nameEntryFactory(element, options));
-
+    }
   }
 
 };
