@@ -1,19 +1,42 @@
 {
-  "name": "flow365modules",
-  "version": "1.0.0",
-  "description": "Create BPMN-models and control them as a module for Viper",
-  "main": "asn1.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "_from": "git+https://github.com/R3vlyn/Flow365-modeler-modules.git",
+  "_id": "flow365modules@1.0.0",
+  "_inBundle": false,
+  "_integrity": "sha1-CAnExNwZ1wawuwbT7PxW+WaoirE=",
+  "_location": "/flow365modules",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "https://github.com/R3vlyn/Flow365-modeler-modules",
+    "rawSpec": "https://github.com/R3vlyn/Flow365-modeler-modules",
+    "saveSpec": "git+https://github.com/R3vlyn/Flow365-modeler-modules.git",
+    "fetchSpec": "https://github.com/R3vlyn/Flow365-modeler-modules.git",
+    "gitCommittish": "master"
   },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "git+https://github.com/R3vlyn/Flow365-modeler-modules.git#e31264a48ba04588643e99402b235fc21f0296b2",
+  "_spec": "https://github.com/R3vlyn/Flow365-modeler-modules",
+  "_where": "D:\\GithubRepos\\Flow365\\Flow365-Modeler",
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/R3vlyn/Flow365-modeler-modules/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Create BPMN-models and control them as a module for Viper",
+  "homepage": "https://github.com/R3vlyn/Flow365-modeler-modules#readme",
+  "license": "ISC",
+  "main": "asn1.js",
+  "name": "flow365modules",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/R3vlyn/Flow365-modeler-modules.git"
   },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/R3vlyn/Flow365-modeler-modules/issues"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "homepage": "https://github.com/R3vlyn/Flow365-modeler-modules#readme"
+  "version": "1.0.0"
 }

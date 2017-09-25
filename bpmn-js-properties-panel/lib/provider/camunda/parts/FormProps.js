@@ -323,6 +323,76 @@ module.exports = function(group, element, bpmnFactory) {
         }
     }));
 
+    var datasources = [{
+            name: "OL_KAND",
+            object: "Inschrijving"
+        },
+        {
+            name: "OL_FACTUUR",
+            object: "Inschrijving"
+        },
+        {
+            name: "OL_KOSTEN",
+            object: "Cursus"
+        }
+    ];
+
+    function filterDatasources(datasources, viperobject) {
+        var filteredDatasources = [];
+        datasources.forEach(function(a) {
+            if (a.object === viperobject) {
+                filteredDatasources.push(a);
+            }
+        });
+        return filteredDatasources;
+    };
+
+    function getSelectOptions(datasources) {
+        var selectoptions = [];
+        datasources.forEach(function(a) {
+            selectoptions.push({ name: a.name, value: a.name });
+        });
+        return selectoptions;
+    };
+
+    var datasourceOptions = []
+    try {
+        var viperobject = element.businessObject.Object;
+        var filterdDatasources = filterDatasources(datasources, viperobject);
+        datasourceOptions = getSelectOptions(filterdDatasources);
+    } catch (e) {}
+
+    if (!is(element, 'bpmn:UserTask')) {
+        group.entries.push(entryFactory.comboBox({
+            id: 'form-field-datasource',
+            label: 'Datasource',
+            selectOptions: datasourceOptions,
+            modelProperty: 'Datasource',
+            emptyParameter: true,
+
+            get: function(element, node) {
+                var selectedFormField = getSelectedFormField(element, node);
+
+                if (selectedFormField) {
+                    return { Datasource: selectedFormField.Datasource };
+                } else {
+                    return {};
+                }
+            },
+            set: function(element, values, node) {
+                var selectedFormField = getSelectedFormField(element, node),
+                    formData = getExtensionElements(getBusinessObject(element), 'camunda:FormData')[0],
+                    commands = [];
+                commands.push(cmdHelper.updateBusinessObject(element, selectedFormField, values));
+
+                return commands;
+            },
+            hidden: function(element, node) {
+                return !getSelectedFormField(element, node);
+            }
+        }));
+    }
+
     // [FormData] form field defaultValue text input field
     group.entries.push(formFieldTextField({
         id: 'form-field-defaultValue',

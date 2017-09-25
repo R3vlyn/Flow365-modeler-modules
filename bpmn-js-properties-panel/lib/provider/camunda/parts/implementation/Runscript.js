@@ -31,8 +31,9 @@ module.exports = function(element, bpmnFactory, options, scripts) {
 
         set: function(element, values, node) {
             var bo = getBusinessObject(element);
+            bo.di.set({ 'fill': "lightblue" });
             return cmdHelper.updateBusinessObject(element, bo, {
-                'camunda:runscript': values.runscript
+                'camunda:runscript': values.runscript,
             });
         },
 

@@ -6,15 +6,13 @@
         "tagAlias": "lowerCase"
     },
     "associations": [],
-    "types": [
-        {
+    "types": [{
             "name": "ViperStartTrigger",
             "extends": [
                 "bpmn:StartEvent"
             ],
-            "properties": [
-                {
-                    "name": "Trigger",
+            "properties": [{
+                    "name": "Event",
                     "isAttr": true,
                     "type": "String"
                 },
@@ -24,6 +22,18 @@
                     "type": "String"
                 }
             ]
+        },
+        {
+            "name": "ViperDataSource",
+            "extends": [
+                "camunda:FormField"
+            ],
+            "properties": [{
+                "name": "Datasource",
+                "isAttr": true,
+                "type": "String"
+            }]
         }
+
     ]
 }
