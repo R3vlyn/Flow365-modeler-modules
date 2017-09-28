@@ -19,11 +19,11 @@ var createMatrix = require('tiny-svg/lib/geometry').createMatrix;
 
 
 function round(number, resolution) {
-  return Math.round(number * resolution) / resolution;
+    return Math.round(number * resolution) / resolution;
 }
 
 function ensurePx(number) {
-  return isNumber(number) ? number + 'px' : number;
+    return isNumber(number) ? number + 'px' : number;
 }
 
 /**
@@ -35,43 +35,43 @@ function ensurePx(number) {
  */
 function createContainer(options) {
 
-  options = assign({}, { width: '100%', height: '100%' }, options);
+    options = assign({}, { width: '100%', height: '100%' }, options);
 
-  var container = options.container || document.body;
+    var container = options.container || document.body;
 
-  // create a <div> around the svg element with the respective size
-  // this way we can always get the correct container size
-  // (this is impossible for <svg> elements at the moment)
-  var parent = document.createElement('div');
-  parent.setAttribute('class', 'djs-container');
+    // create a <div> around the svg element with the respective size
+    // this way we can always get the correct container size
+    // (this is impossible for <svg> elements at the moment)
+    var parent = document.createElement('div');
+    parent.setAttribute('class', 'djs-container');
 
-  assign(parent.style, {
-    position: 'relative',
-    overflow: 'hidden',
-    width: ensurePx(options.width),
-    height: ensurePx(options.height)
-  });
+    assign(parent.style, {
+        position: 'relative',
+        overflow: 'hidden',
+        width: ensurePx(options.width),
+        height: ensurePx(options.height)
+    });
 
-  container.appendChild(parent);
+    container.appendChild(parent);
 
-  return parent;
+    return parent;
 }
 
 function createGroup(parent, cls) {
-  var group = svgCreate('g');
-  svgClasses(group).add(cls);
+    var group = svgCreate('g');
+    svgClasses(group).add(cls);
 
-  svgAppend(parent, group);
+    svgAppend(parent, group);
 
-  return group;
+    return group;
 }
 
 var BASE_LAYER = 'base';
 
 
 var REQUIRED_MODEL_ATTRS = {
-  shape: [ 'x', 'y', 'width', 'height' ],
-  connection: [ 'waypoints' ]
+    shape: ['x', 'y', 'width', 'height'],
+    connection: ['waypoints']
 };
 
 /**
@@ -89,118 +89,118 @@ var REQUIRED_MODEL_ATTRS = {
  */
 function Canvas(config, eventBus, graphicsFactory, elementRegistry) {
 
-  this._eventBus = eventBus;
-  this._elementRegistry = elementRegistry;
-  this._graphicsFactory = graphicsFactory;
+    this._eventBus = eventBus;
+    this._elementRegistry = elementRegistry;
+    this._graphicsFactory = graphicsFactory;
 
-  this._init(config || {});
+    this._init(config || {});
 }
 
-Canvas.$inject = [ 'config.canvas', 'eventBus', 'graphicsFactory', 'elementRegistry' ];
+Canvas.$inject = ['config.canvas', 'eventBus', 'graphicsFactory', 'elementRegistry'];
 
 module.exports = Canvas;
 
 
 Canvas.prototype._init = function(config) {
 
-  var eventBus = this._eventBus;
+    var eventBus = this._eventBus;
 
-  // Creates a <svg> element that is wrapped into a <div>.
-  // This way we are always able to correctly figure out the size of the svg element
-  // by querying the parent node.
-  //
-  // (It is not possible to get the size of a svg element cross browser @ 2014-04-01)
-  //
-  // <div class="djs-container" style="width: {desired-width}, height: {desired-height}">
-  //   <svg width="100%" height="100%">
-  //    ...
-  //   </svg>
-  // </div>
+    // Creates a <svg> element that is wrapped into a <div>.
+    // This way we are always able to correctly figure out the size of the svg element
+    // by querying the parent node.
+    //
+    // (It is not possible to get the size of a svg element cross browser @ 2014-04-01)
+    //
+    // <div class="djs-container" style="width: {desired-width}, height: {desired-height}">
+    //   <svg width="100%" height="100%">
+    //    ...
+    //   </svg>
+    // </div>
 
-  // html container
-  var container = this._container = createContainer(config);
+    // html container
+    var container = this._container = createContainer(config);
 
-  var svg = this._svg = svgCreate('svg');
-  svgAttr(svg, { width: '100%', height: '100%' });
+    var svg = this._svg = svgCreate('svg');
+    svgAttr(svg, { width: '100%', height: '100%' });
 
-  svgAppend(container, svg);
+    svgAppend(container, svg);
 
-  var viewport = this._viewport = createGroup(svg, 'viewport');
+    var viewport = this._viewport = createGroup(svg, 'viewport');
 
-  this._layers = {};
+    this._layers = {};
 
-  // debounce canvas.viewbox.changed events
-  // for smoother diagram interaction
-  if (config.deferUpdate !== false) {
-    this._viewboxChanged = debounce(this._viewboxChanged, 300);
-  }
+    // debounce canvas.viewbox.changed events
+    // for smoother diagram interaction
+    if (config.deferUpdate !== false) {
+        this._viewboxChanged = debounce(this._viewboxChanged, 300);
+    }
 
-  eventBus.on('diagram.init', function() {
+    eventBus.on('diagram.init', function() {
 
-    /**
-     * An event indicating that the canvas is ready to be drawn on.
-     *
-     * @memberOf Canvas
-     *
-     * @event canvas.init
-     *
-     * @type {Object}
-     * @property {Snap<SVGSVGElement>} svg the created svg element
-     * @property {Snap<SVGGroup>} viewport the direct parent of diagram elements and shapes
-     */
-    eventBus.fire('canvas.init', {
-      svg: svg,
-      viewport: viewport
-    });
+        /**
+         * An event indicating that the canvas is ready to be drawn on.
+         *
+         * @memberOf Canvas
+         *
+         * @event canvas.init
+         *
+         * @type {Object}
+         * @property {Snap<SVGSVGElement>} svg the created svg element
+         * @property {Snap<SVGGroup>} viewport the direct parent of diagram elements and shapes
+         */
+        eventBus.fire('canvas.init', {
+            svg: svg,
+            viewport: viewport
+        });
 
-    // fire this in order for certain components to check
-    // if they need to be adjusted due the canvas size
-    this.resized();
+        // fire this in order for certain components to check
+        // if they need to be adjusted due the canvas size
+        this.resized();
 
-  }, this);
+    }, this);
 
-  eventBus.on('diagram.destroy', 500, this._destroy, this);
-  eventBus.on('diagram.clear', 500, this._clear, this);
+    eventBus.on('diagram.destroy', 500, this._destroy, this);
+    eventBus.on('diagram.clear', 500, this._clear, this);
 };
 
 Canvas.prototype._destroy = function(emit) {
-  this._eventBus.fire('canvas.destroy', {
-    svg: this._svg,
-    viewport: this._viewport
-  });
+    this._eventBus.fire('canvas.destroy', {
+        svg: this._svg,
+        viewport: this._viewport
+    });
 
-  var parent = this._container.parentNode;
+    var parent = this._container.parentNode;
 
-  if (parent) {
-    parent.removeChild(this._container);
-  }
+    if (parent) {
+        parent.removeChild(this._container);
+    }
 
-  delete this._svg;
-  delete this._container;
-  delete this._layers;
-  delete this._rootElement;
-  delete this._viewport;
+    delete this._svg;
+    delete this._container;
+    delete this._layers;
+    delete this._rootElement;
+    delete this._viewport;
 };
 
 Canvas.prototype._clear = function() {
 
-  var self = this;
+    var self = this;
 
-  var allElements = this._elementRegistry.getAll();
+    var allElements = this._elementRegistry.getAll();
 
-  // remove all elements
-  allElements.forEach(function(element) {
-    var type = Elements.getType(element);
+    // remove all elements
+    allElements.forEach(function(element) {
+        var type = Elements.getType(element);
 
-    if (type === 'root') {
-      self.setRootElement(null, true);
-    } else {
-      self._removeElement(element, type);
-    }
-  });
+        if (type === 'root') {
+            self.setRootElement(null, true);
+        } else {
+            self._removeElement(element, type);
+        }
+    });
 
-  // force recomputation of view box
-  delete this._cachedViewbox;
+    // force recomputation of view box
+    delete this._cachedViewbox;
 };
 
 /**
@@ -210,7 +210,7 @@ Canvas.prototype._clear = function() {
  * @returns {Snap<SVGGroup>}
  */
 Canvas.prototype.getDefaultLayer = function() {
-  return this.getLayer(BASE_LAYER);
+    return this.getLayer(BASE_LAYER);
 };
 
 /**
@@ -223,16 +223,16 @@ Canvas.prototype.getDefaultLayer = function() {
  */
 Canvas.prototype.getLayer = function(name) {
 
-  if (!name) {
-    throw new Error('must specify a name');
-  }
+    if (!name) {
+        throw new Error('must specify a name');
+    }
 
-  var layer = this._layers[name];
-  if (!layer) {
-    layer = this._layers[name] = createGroup(this._viewport, 'layer-' + name);
-  }
+    var layer = this._layers[name];
+    if (!layer) {
+        layer = this._layers[name] = createGroup(this._viewport, 'layer-' + name);
+    }
 
-  return layer;
+    return layer;
 };
 
 
@@ -243,48 +243,48 @@ Canvas.prototype.getLayer = function(name) {
  * @return {DOMNode}
  */
 Canvas.prototype.getContainer = function() {
-  return this._container;
+    return this._container;
 };
 
 
 /////////////// markers ///////////////////////////////////
 
 Canvas.prototype._updateMarker = function(element, marker, add) {
-  var container;
+    var container;
 
-  if (!element.id) {
-    element = this._elementRegistry.get(element);
-  }
-
-  // we need to access all
-  container = this._elementRegistry._elements[element.id];
-
-  if (!container) {
-    return;
-  }
-
-  forEach([ container.gfx, container.secondaryGfx ], function(gfx) {
-    if (gfx) {
-      // invoke either addClass or removeClass based on mode
-      if (add) {
-        svgClasses(gfx).add(marker);
-      } else {
-        svgClasses(gfx).remove(marker);
-      }
+    if (!element.id) {
+        element = this._elementRegistry.get(element);
     }
-  });
 
-  /**
-   * An event indicating that a marker has been updated for an element
-   *
-   * @event element.marker.update
-   * @type {Object}
-   * @property {djs.model.Element} element the shape
-   * @property {Object} gfx the graphical representation of the shape
-   * @property {String} marker
-   * @property {Boolean} add true if the marker was added, false if it got removed
-   */
-  this._eventBus.fire('element.marker.update', { element: element, gfx: container.gfx, marker: marker, add: !!add });
+    // we need to access all
+    container = this._elementRegistry._elements[element.id];
+
+    if (!container) {
+        return;
+    }
+
+    forEach([container.gfx, container.secondaryGfx], function(gfx) {
+        if (gfx) {
+            // invoke either addClass or removeClass based on mode
+            if (add) {
+                svgClasses(gfx).add(marker);
+            } else {
+                svgClasses(gfx).remove(marker);
+            }
+        }
+    });
+
+    /**
+     * An event indicating that a marker has been updated for an element
+     *
+     * @event element.marker.update
+     * @type {Object}
+     * @property {djs.model.Element} element the shape
+     * @property {Object} gfx the graphical representation of the shape
+     * @property {String} marker
+     * @property {Boolean} add true if the marker was added, false if it got removed
+     */
+    this._eventBus.fire('element.marker.update', { element: element, gfx: container.gfx, marker: marker, add: !!add });
 };
 
 
@@ -305,7 +305,7 @@ Canvas.prototype._updateMarker = function(element, marker, add) {
  * @param {String} marker
  */
 Canvas.prototype.addMarker = function(element, marker) {
-  this._updateMarker(element, marker, true);
+    this._updateMarker(element, marker, true);
 };
 
 
@@ -319,7 +319,7 @@ Canvas.prototype.addMarker = function(element, marker) {
  * @param  {String} marker
  */
 Canvas.prototype.removeMarker = function(element, marker) {
-  this._updateMarker(element, marker, false);
+    this._updateMarker(element, marker, false);
 };
 
 /**
@@ -329,13 +329,13 @@ Canvas.prototype.removeMarker = function(element, marker) {
  * @param  {String} marker
  */
 Canvas.prototype.hasMarker = function(element, marker) {
-  if (!element.id) {
-    element = this._elementRegistry.get(element);
-  }
+    if (!element.id) {
+        element = this._elementRegistry.get(element);
+    }
 
-  var gfx = this.getGraphics(element);
+    var gfx = this.getGraphics(element);
 
-  return svgClasses(gfx).has(marker);
+    return svgClasses(gfx).has(marker);
 };
 
 /**
@@ -348,19 +348,19 @@ Canvas.prototype.hasMarker = function(element, marker) {
  * @param  {String} marker
  */
 Canvas.prototype.toggleMarker = function(element, marker) {
-  if (this.hasMarker(element, marker)) {
-    this.removeMarker(element, marker);
-  } else {
-    this.addMarker(element, marker);
-  }
+    if (this.hasMarker(element, marker)) {
+        this.removeMarker(element, marker);
+    } else {
+        this.addMarker(element, marker);
+    }
 };
 
 Canvas.prototype.getRootElement = function() {
-  if (!this._rootElement) {
-    this.setRootElement({ id: '__implicitroot', children: [] });
-  }
+    if (!this._rootElement) {
+        this.setRootElement({ id: '__implicitroot', children: [] });
+    }
 
-  return this._rootElement;
+    return this._rootElement;
 };
 
 
@@ -378,40 +378,40 @@ Canvas.prototype.getRootElement = function() {
  */
 Canvas.prototype.setRootElement = function(element, override) {
 
-  if (element) {
-    this._ensureValid('root', element);
-  }
-
-  var currentRoot = this._rootElement,
-      elementRegistry = this._elementRegistry,
-      eventBus = this._eventBus;
-
-  if (currentRoot) {
-    if (!override) {
-      throw new Error('rootElement already set, need to specify override');
+    if (element) {
+        this._ensureValid('root', element);
     }
 
-    // simulate element remove event sequence
-    eventBus.fire('root.remove', { element: currentRoot });
-    eventBus.fire('root.removed', { element: currentRoot });
+    var currentRoot = this._rootElement,
+        elementRegistry = this._elementRegistry,
+        eventBus = this._eventBus;
 
-    elementRegistry.remove(currentRoot);
-  }
+    if (currentRoot) {
+        if (!override) {
+            throw new Error('rootElement already set, need to specify override');
+        }
 
-  if (element) {
-    var gfx = this.getDefaultLayer();
+        // simulate element remove event sequence
+        eventBus.fire('root.remove', { element: currentRoot });
+        eventBus.fire('root.removed', { element: currentRoot });
 
-    // resemble element add event sequence
-    eventBus.fire('root.add', { element: element });
+        elementRegistry.remove(currentRoot);
+    }
 
-    elementRegistry.add(element, gfx, this._svg);
+    if (element) {
+        var gfx = this.getDefaultLayer();
 
-    eventBus.fire('root.added', { element: element, gfx: gfx });
-  }
+        // resemble element add event sequence
+        eventBus.fire('root.add', { element: element });
 
-  this._rootElement = element;
+        elementRegistry.add(element, gfx, this._svg);
 
-  return element;
+        eventBus.fire('root.added', { element: element, gfx: gfx });
+    }
+
+    this._rootElement = element;
+
+    return element;
 };
 
 
@@ -419,29 +419,29 @@ Canvas.prototype.setRootElement = function(element, override) {
 ///////////// add functionality ///////////////////////////////
 
 Canvas.prototype._ensureValid = function(type, element) {
-  if (!element.id) {
-    throw new Error('element must have an id');
-  }
+    if (!element.id) {
+        throw new Error('element must have an id');
+    }
 
-  if (this._elementRegistry.get(element.id)) {
-    throw new Error('element with id ' + element.id + ' already exists');
-  }
+    if (this._elementRegistry.get(element.id)) {
+        throw new Error('element with id ' + element.id + ' already exists');
+    }
 
-  var requiredAttrs = REQUIRED_MODEL_ATTRS[type];
+    var requiredAttrs = REQUIRED_MODEL_ATTRS[type];
 
-  var valid = every(requiredAttrs, function(attr) {
-    return typeof element[attr] !== 'undefined';
-  });
+    var valid = every(requiredAttrs, function(attr) {
+        return typeof element[attr] !== 'undefined';
+    });
 
-  if (!valid) {
-    throw new Error(
-      'must supply { ' + requiredAttrs.join(', ') + ' } with ' + type);
-  }
+    if (!valid) {
+        throw new Error(
+            'must supply { ' + requiredAttrs.join(', ') + ' } with ' + type);
+    }
 };
 
 Canvas.prototype._setParent = function(element, parent, parentIndex) {
-  Collections.add(parent.children, element, parentIndex);
-  element.parent = parent;
+    Collections.add(parent.children, element, parentIndex);
+    element.parent = parent;
 };
 
 /**
@@ -466,28 +466,28 @@ Canvas.prototype._setParent = function(element, parent, parentIndex) {
  */
 Canvas.prototype._addElement = function(type, element, parent, parentIndex) {
 
-  parent = parent || this.getRootElement();
+    parent = parent || this.getRootElement();
 
-  var eventBus = this._eventBus,
-      graphicsFactory = this._graphicsFactory;
+    var eventBus = this._eventBus,
+        graphicsFactory = this._graphicsFactory;
 
-  this._ensureValid(type, element);
+    this._ensureValid(type, element);
 
-  eventBus.fire(type + '.add', { element: element, parent: parent });
+    eventBus.fire(type + '.add', { element: element, parent: parent });
 
-  this._setParent(element, parent, parentIndex);
+    this._setParent(element, parent, parentIndex);
 
-  // create graphics
-  var gfx = graphicsFactory.create(type, element);
+    // create graphics
+    var gfx = graphicsFactory.create(type, element);
 
-  this._elementRegistry.add(element, gfx);
+    this._elementRegistry.add(element, gfx);
 
-  // update its visual
-  graphicsFactory.update(type, element, gfx);
+    // update its visual
+    graphicsFactory.update(type, element, gfx);
 
-  eventBus.fire(type + '.added', { element: element, gfx: gfx });
+    eventBus.fire(type + '.added', { element: element, gfx: gfx });
 
-  return element;
+    return element;
 };
 
 /**
@@ -500,7 +500,7 @@ Canvas.prototype._addElement = function(type, element, parent, parentIndex) {
  * @return {djs.model.Shape} the added shape
  */
 Canvas.prototype.addShape = function(shape, parent, parentIndex) {
-  return this._addElement('shape', shape, parent, parentIndex);
+    return this._addElement('shape', shape, parent, parentIndex);
 };
 
 /**
@@ -513,7 +513,7 @@ Canvas.prototype.addShape = function(shape, parent, parentIndex) {
  * @return {djs.model.Connection} the added connection
  */
 Canvas.prototype.addConnection = function(connection, parent, parentIndex) {
-  return this._addElement('connection', connection, parent, parentIndex);
+    return this._addElement('connection', connection, parent, parentIndex);
 };
 
 
@@ -522,30 +522,30 @@ Canvas.prototype.addConnection = function(connection, parent, parentIndex) {
  */
 Canvas.prototype._removeElement = function(element, type) {
 
-  var elementRegistry = this._elementRegistry,
-      graphicsFactory = this._graphicsFactory,
-      eventBus = this._eventBus;
+    var elementRegistry = this._elementRegistry,
+        graphicsFactory = this._graphicsFactory,
+        eventBus = this._eventBus;
 
-  element = elementRegistry.get(element.id || element);
+    element = elementRegistry.get(element.id || element);
 
-  if (!element) {
-    // element was removed already
-    return;
-  }
+    if (!element) {
+        // element was removed already
+        return;
+    }
 
-  eventBus.fire(type + '.remove', { element: element });
+    eventBus.fire(type + '.remove', { element: element });
 
-  graphicsFactory.remove(element);
+    graphicsFactory.remove(element);
 
-  // unset parent <-> child relationship
-  Collections.remove(element.parent && element.parent.children, element);
-  element.parent = null;
+    // unset parent <-> child relationship
+    Collections.remove(element.parent && element.parent.children, element);
+    element.parent = null;
 
-  eventBus.fire(type + '.removed', { element: element });
+    eventBus.fire(type + '.removed', { element: element });
 
-  elementRegistry.remove(element);
+    elementRegistry.remove(element);
 
-  return element;
+    return element;
 };
 
 
@@ -558,28 +558,28 @@ Canvas.prototype._removeElement = function(element, type) {
  */
 Canvas.prototype.removeShape = function(shape) {
 
-  /**
-   * An event indicating that a shape is about to be removed from the canvas.
-   *
-   * @memberOf Canvas
-   *
-   * @event shape.remove
-   * @type {Object}
-   * @property {djs.model.Shape} element the shape descriptor
-   * @property {Object} gfx the graphical representation of the shape
-   */
+    /**
+     * An event indicating that a shape is about to be removed from the canvas.
+     *
+     * @memberOf Canvas
+     *
+     * @event shape.remove
+     * @type {Object}
+     * @property {djs.model.Shape} element the shape descriptor
+     * @property {Object} gfx the graphical representation of the shape
+     */
 
-  /**
-   * An event indicating that a shape has been removed from the canvas.
-   *
-   * @memberOf Canvas
-   *
-   * @event shape.removed
-   * @type {Object}
-   * @property {djs.model.Shape} element the shape descriptor
-   * @property {Object} gfx the graphical representation of the shape
-   */
-  return this._removeElement(shape, 'shape');
+    /**
+     * An event indicating that a shape has been removed from the canvas.
+     *
+     * @memberOf Canvas
+     *
+     * @event shape.removed
+     * @type {Object}
+     * @property {djs.model.Shape} element the shape descriptor
+     * @property {Object} gfx the graphical representation of the shape
+     */
+    return this._removeElement(shape, 'shape');
 };
 
 
@@ -592,28 +592,28 @@ Canvas.prototype.removeShape = function(shape) {
  */
 Canvas.prototype.removeConnection = function(connection) {
 
-  /**
-   * An event indicating that a connection is about to be removed from the canvas.
-   *
-   * @memberOf Canvas
-   *
-   * @event connection.remove
-   * @type {Object}
-   * @property {djs.model.Connection} element the connection descriptor
-   * @property {Object} gfx the graphical representation of the connection
-   */
+    /**
+     * An event indicating that a connection is about to be removed from the canvas.
+     *
+     * @memberOf Canvas
+     *
+     * @event connection.remove
+     * @type {Object}
+     * @property {djs.model.Connection} element the connection descriptor
+     * @property {Object} gfx the graphical representation of the connection
+     */
 
-  /**
-   * An event indicating that a connection has been removed from the canvas.
-   *
-   * @memberOf Canvas
-   *
-   * @event connection.removed
-   * @type {Object}
-   * @property {djs.model.Connection} element the connection descriptor
-   * @property {Object} gfx the graphical representation of the connection
-   */
-  return this._removeElement(connection, 'connection');
+    /**
+     * An event indicating that a connection has been removed from the canvas.
+     *
+     * @memberOf Canvas
+     *
+     * @event connection.removed
+     * @type {Object}
+     * @property {djs.model.Connection} element the connection descriptor
+     * @property {Object} gfx the graphical representation of the connection
+     */
+    return this._removeElement(connection, 'connection');
 };
 
 
@@ -626,7 +626,7 @@ Canvas.prototype.removeConnection = function(connection) {
  * @return {SVGElement}
  */
 Canvas.prototype.getGraphics = function(element, secondary) {
-  return this._elementRegistry.getGraphics(element, secondary);
+    return this._elementRegistry.getGraphics(element, secondary);
 };
 
 
@@ -637,24 +637,24 @@ Canvas.prototype.getGraphics = function(element, secondary) {
  */
 Canvas.prototype._changeViewbox = function(changeFn) {
 
-  // notify others of the upcoming viewbox change
-  this._eventBus.fire('canvas.viewbox.changing');
+    // notify others of the upcoming viewbox change
+    this._eventBus.fire('canvas.viewbox.changing');
 
-  // perform actual change
-  changeFn.apply(this);
+    // perform actual change
+    changeFn.apply(this);
 
-  // reset the cached viewbox so that
-  // a new get operation on viewbox or zoom
-  // triggers a viewbox re-computation
-  this._cachedViewbox = null;
+    // reset the cached viewbox so that
+    // a new get operation on viewbox or zoom
+    // triggers a viewbox re-computation
+    this._cachedViewbox = null;
 
-  // notify others of the change; this step
-  // may or may not be debounced
-  this._viewboxChanged();
+    // notify others of the change; this step
+    // may or may not be debounced
+    this._viewboxChanged();
 };
 
 Canvas.prototype._viewboxChanged = function() {
-  this._eventBus.fire('canvas.viewbox.changed', { viewbox: this.viewbox() });
+    this._eventBus.fire('canvas.viewbox.changed', { viewbox: this.viewbox() });
 };
 
 
@@ -705,60 +705,60 @@ Canvas.prototype._viewboxChanged = function() {
  */
 Canvas.prototype.viewbox = function(box) {
 
-  if (box === undefined && this._cachedViewbox) {
-    return this._cachedViewbox;
-  }
+    if (box === undefined && this._cachedViewbox) {
+        return this._cachedViewbox;
+    }
 
-  var viewport = this._viewport,
-      innerBox,
-      outerBox = this.getSize(),
-      matrix,
-      scale,
-      x, y;
+    var viewport = this._viewport,
+        innerBox,
+        outerBox = this.getSize(),
+        matrix,
+        scale,
+        x, y;
 
-  if (!box) {
-    // compute the inner box based on the
-    // diagrams default layer. This allows us to exclude
-    // external components, such as overlays
-    innerBox = this.getDefaultLayer().getBBox();
+    if (!box) {
+        // compute the inner box based on the
+        // diagrams default layer. This allows us to exclude
+        // external components, such as overlays
+        innerBox = this.getDefaultLayer().getBBox();
 
-    var transform = svgTransform(viewport);
-    matrix = transform ? transform.matrix : createMatrix();
-    scale = round(matrix.a, 1000);
+        var transform = svgTransform(viewport);
+        matrix = transform ? transform.matrix : createMatrix();
+        scale = round(matrix.a, 1000);
 
-    x = round(-matrix.e || 0, 1000);
-    y = round(-matrix.f || 0, 1000);
+        x = round(-matrix.e || 0, 1000);
+        y = round(-matrix.f || 0, 1000);
 
-    box = this._cachedViewbox = {
-      x: x ? x / scale : 0,
-      y: y ? y / scale : 0,
-      width: outerBox.width / scale,
-      height: outerBox.height / scale,
-      scale: scale,
-      inner: {
-        width: innerBox.width,
-        height: innerBox.height,
-        x: innerBox.x,
-        y: innerBox.y
-      },
-      outer: outerBox
-    };
+        box = this._cachedViewbox = {
+            x: x ? x / scale : 0,
+            y: y ? y / scale : 0,
+            width: outerBox.width / scale,
+            height: outerBox.height / scale,
+            scale: scale,
+            inner: {
+                width: innerBox.width,
+                height: innerBox.height,
+                x: innerBox.x,
+                y: innerBox.y
+            },
+            outer: outerBox
+        };
+
+        return box;
+    } else {
+
+        this._changeViewbox(function() {
+            scale = Math.min(outerBox.width / box.width, outerBox.height / box.height);
+
+            var matrix = this._svg.createSVGMatrix()
+                .scale(scale)
+                .translate(-box.x, -box.y);
+
+            svgTransform(viewport, matrix);
+        });
+    }
 
     return box;
-  } else {
-
-    this._changeViewbox(function() {
-      scale = Math.min(outerBox.width / box.width, outerBox.height / box.height);
-
-      var matrix = this._svg.createSVGMatrix()
-        .scale(scale)
-        .translate(-box.x, -box.y);
-
-      svgTransform(viewport, matrix);
-    });
-  }
-
-  return box;
 };
 
 
@@ -772,20 +772,20 @@ Canvas.prototype.viewbox = function(box) {
  */
 Canvas.prototype.scroll = function(delta) {
 
-  var node = this._viewport;
-  var matrix = node.getCTM();
+    var node = this._viewport;
+    var matrix = node.getCTM();
 
-  if (delta) {
-    this._changeViewbox(function() {
-      delta = assign({ dx: 0, dy: 0 }, delta || {});
+    if (delta) {
+        this._changeViewbox(function() {
+            delta = assign({ dx: 0, dy: 0 }, delta || {});
 
-      matrix = this._svg.createSVGMatrix().translate(delta.dx, delta.dy).multiply(matrix);
+            matrix = this._svg.createSVGMatrix().translate(delta.dx, delta.dy).multiply(matrix);
 
-      setCTM(node, matrix);
-    });
-  }
+            setCTM(node, matrix);
+        });
+    }
 
-  return { x: matrix.e, y: matrix.f };
+    return { x: matrix.e, y: matrix.f };
 };
 
 
@@ -804,121 +804,126 @@ Canvas.prototype.scroll = function(delta) {
  */
 Canvas.prototype.zoom = function(newScale, center) {
 
-  if (!newScale) {
-    return this.viewbox(newScale).scale;
-  }
-
-  if (newScale === 'fit-viewport') {
-    return this._fitViewport(center);
-  }
-
-  var outer,
-      matrix;
-
-  this._changeViewbox(function() {
-
-    if (typeof center !== 'object') {
-      outer = this.viewbox().outer;
-
-      center = {
-        x: outer.width / 2,
-        y: outer.height / 2
-      };
+    if (!newScale) {
+        return this.viewbox(newScale).scale;
     }
 
-    matrix = this._setZoom(newScale, center);
-  });
+    if (newScale === 'fit-viewport') {
+        return this._fitViewport(center);
+    }
 
-  return round(matrix.a, 1000);
+    var outer,
+        matrix;
+
+    this._changeViewbox(function() {
+
+        if (typeof center !== 'object') {
+            outer = this.viewbox().outer;
+
+            center = {
+                x: outer.width / 2,
+                y: outer.height / 2
+            };
+        }
+
+        matrix = this._setZoom(newScale, center);
+    });
+
+    return round(matrix.a, 1000);
 };
 
 function setCTM(node, m) {
-  var mstr = 'matrix(' + m.a + ',' + m.b + ',' + m.c + ',' + m.d + ',' + m.e + ',' + m.f + ')';
-  node.setAttribute('transform', mstr);
+    var mstr = 'matrix(' + m.a + ',' + m.b + ',' + m.c + ',' + m.d + ',' + m.e + ',' + m.f + ')';
+    node.setAttribute('transform', mstr);
 }
 
 Canvas.prototype._fitViewport = function(center) {
 
-  var vbox = this.viewbox(),
-      outer = vbox.outer,
-      inner = vbox.inner,
-      newScale,
-      newViewbox;
+    var vbox = this.viewbox(),
+        outer = vbox.outer,
+        inner = vbox.inner,
+        newScale,
+        newViewbox;
 
-  // display the complete diagram without zooming in.
-  // instead of relying on internal zoom, we perform a
-  // hard reset on the canvas viewbox to realize this
-  //
-  // if diagram does not need to be zoomed in, we focus it around
-  // the diagram origin instead
+    // display the complete diagram without zooming in.
+    // instead of relying on internal zoom, we perform a
+    // hard reset on the canvas viewbox to realize this
+    //
+    // if diagram does not need to be zoomed in, we focus it around
+    // the diagram origin instead
 
-  if (inner.x >= 0 &&
-      inner.y >= 0 &&
-      inner.x + inner.width <= outer.width &&
-      inner.y + inner.height <= outer.height &&
-      !center) {
+    if (inner.x >= 0 &&
+        inner.y >= 0 &&
+        inner.x + inner.width <= outer.width &&
+        inner.y + inner.height <= outer.height &&
+        !center) {
 
-    newViewbox = {
-      x: 0,
-      y: 0,
-      width: Math.max(inner.width + inner.x, outer.width),
-      height: Math.max(inner.height + inner.y, outer.height)
-    };
-  } else {
+        newViewbox = {
+            x: 0,
+            y: 0,
+            width: Math.max(inner.width + inner.x, outer.width),
+            height: Math.max(inner.height + inner.y, outer.height)
+        };
+    } else {
 
-    newScale = Math.min(1, outer.width / inner.width, outer.height / inner.height);
-    newViewbox = {
-      x: inner.x + (center ? inner.width / 2 - outer.width / newScale / 2 : 0),
-      y: inner.y + (center ? inner.height / 2 - outer.height / newScale / 2 : 0),
-      width: outer.width / newScale,
-      height: outer.height / newScale
-    };
-  }
+        newScale = Math.min(1, outer.width / inner.width, outer.height / inner.height);
+        newViewbox = {
+            x: inner.x + (center ? inner.width / 2 - outer.width / newScale / 2 : 0),
+            y: inner.y + (center ? inner.height / 2 - outer.height / newScale / 2 : 0),
+            width: outer.width / newScale,
+            height: outer.height / newScale
+        };
+    }
 
-  this.viewbox(newViewbox);
+    this.viewbox(newViewbox);
 
-  return this.viewbox(false).scale;
+    return this.viewbox(false).scale;
 };
 
+Canvas.prototype.resetCanvas = function() {
+    this._changeViewbox(function() {
+        setCTM(this._viewport.node, { a: "1", b: "0", c: "0", d: "1", e: "0", f: "0" });
+    });
+}
 
 Canvas.prototype._setZoom = function(scale, center) {
 
-  var svg = this._svg,
-      viewport = this._viewport;
+    var svg = this._svg,
+        viewport = this._viewport;
 
-  var matrix = svg.createSVGMatrix();
-  var point = svg.createSVGPoint();
+    var matrix = svg.createSVGMatrix();
+    var point = svg.createSVGPoint();
 
-  var centerPoint,
-      originalPoint,
-      currentMatrix,
-      scaleMatrix,
-      newMatrix;
+    var centerPoint,
+        originalPoint,
+        currentMatrix,
+        scaleMatrix,
+        newMatrix;
 
-  currentMatrix = viewport.getCTM();
+    currentMatrix = viewport.getCTM();
 
-  var currentScale = currentMatrix.a;
+    var currentScale = currentMatrix.a;
 
-  if (center) {
-    centerPoint = assign(point, center);
+    if (center) {
+        centerPoint = assign(point, center);
 
-    // revert applied viewport transformations
-    originalPoint = centerPoint.matrixTransform(currentMatrix.inverse());
+        // revert applied viewport transformations
+        originalPoint = centerPoint.matrixTransform(currentMatrix.inverse());
 
-    // create scale matrix
-    scaleMatrix = matrix
-                    .translate(originalPoint.x, originalPoint.y)
-                    .scale(1 / currentScale * scale)
-                    .translate(-originalPoint.x, -originalPoint.y);
+        // create scale matrix
+        scaleMatrix = matrix
+            .translate(originalPoint.x, originalPoint.y)
+            .scale(1 / currentScale * scale)
+            .translate(-originalPoint.x, -originalPoint.y);
 
-    newMatrix = currentMatrix.multiply(scaleMatrix);
-  } else {
-    newMatrix = matrix.scale(scale);
-  }
+        newMatrix = currentMatrix.multiply(scaleMatrix);
+    } else {
+        newMatrix = matrix.scale(scale);
+    }
 
-  setCTM(this._viewport, newMatrix);
+    setCTM(this._viewport, newMatrix);
 
-  return newMatrix;
+    return newMatrix;
 };
 
 
@@ -928,10 +933,10 @@ Canvas.prototype._setZoom = function(scale, center) {
  * @return {Dimensions}
  */
 Canvas.prototype.getSize = function() {
-  return {
-    width: this._container.clientWidth,
-    height: this._container.clientHeight
-  };
+    return {
+        width: this._container.clientWidth,
+        height: this._container.clientHeight
+    };
 };
 
 
@@ -946,41 +951,41 @@ Canvas.prototype.getSize = function() {
  * @return {Bounds} the absolute bounding box
  */
 Canvas.prototype.getAbsoluteBBox = function(element) {
-  var vbox = this.viewbox();
-  var bbox;
+    var vbox = this.viewbox();
+    var bbox;
 
-  // connection
-  // use svg bbox
-  if (element.waypoints) {
-    var gfx = this.getGraphics(element);
+    // connection
+    // use svg bbox
+    if (element.waypoints) {
+        var gfx = this.getGraphics(element);
 
-    var transformBBox = gfx.getBBox(true);
-    bbox = gfx.getBBox();
+        var transformBBox = gfx.getBBox(true);
+        bbox = gfx.getBBox();
 
-    bbox.x -= transformBBox.x;
-    bbox.y -= transformBBox.y;
+        bbox.x -= transformBBox.x;
+        bbox.y -= transformBBox.y;
 
-    bbox.width += 2 * transformBBox.x;
-    bbox.height +=  2 * transformBBox.y;
-  }
-  // shapes
-  // use data
-  else {
-    bbox = element;
-  }
+        bbox.width += 2 * transformBBox.x;
+        bbox.height += 2 * transformBBox.y;
+    }
+    // shapes
+    // use data
+    else {
+        bbox = element;
+    }
 
-  var x = bbox.x * vbox.scale - vbox.x * vbox.scale;
-  var y = bbox.y * vbox.scale - vbox.y * vbox.scale;
+    var x = bbox.x * vbox.scale - vbox.x * vbox.scale;
+    var y = bbox.y * vbox.scale - vbox.y * vbox.scale;
 
-  var width = bbox.width * vbox.scale;
-  var height = bbox.height * vbox.scale;
+    var width = bbox.width * vbox.scale;
+    var height = bbox.height * vbox.scale;
 
-  return {
-    x: x,
-    y: y,
-    width: width,
-    height: height
-  };
+    return {
+        x: x,
+        y: y,
+        width: width,
+        height: height
+    };
 };
 
 /**
@@ -989,8 +994,8 @@ Canvas.prototype.getAbsoluteBBox = function(element) {
  */
 Canvas.prototype.resized = function() {
 
-  // force recomputation of view box
-  delete this._cachedViewbox;
+    // force recomputation of view box
+    delete this._cachedViewbox;
 
-  this._eventBus.fire('canvas.resized');
+    this._eventBus.fire('canvas.resized');
 };

@@ -50,11 +50,5 @@ module.exports = function(group, element) {
             label: 'Due Date',
             modelProperty: 'dueDate'
         }));
-
-        group.entries.push(entryFactory.textBox({
-            id: 'description',
-            label: 'Description',
-            modelProperty: 'description'
-        }));
     }
 };

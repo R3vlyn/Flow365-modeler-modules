@@ -27,25 +27,25 @@ var Importer = require('./import/Importer');
 
 function checkValidationError(err) {
 
-  // check if we can help the user by indicating wrong BPMN 2.0 xml
-  // (in case he or the exporting tool did not get that right)
+    // check if we can help the user by indicating wrong BPMN 2.0 xml
+    // (in case he or the exporting tool did not get that right)
 
-  var pattern = /unparsable content <([^>]+)> detected([\s\S]*)$/;
-  var match = pattern.exec(err.message);
+    var pattern = /unparsable content <([^>]+)> detected([\s\S]*)$/;
+    var match = pattern.exec(err.message);
 
-  if (match) {
-    err.message =
-      'unparsable content <' + match[1] + '> detected; ' +
-      'this may indicate an invalid BPMN 2.0 diagram file' + match[2];
-  }
+    if (match) {
+        err.message =
+            'unparsable content <' + match[1] + '> detected; ' +
+            'this may indicate an invalid BPMN 2.0 diagram file' + match[2];
+    }
 
-  return err;
+    return err;
 }
 
 var DEFAULT_OPTIONS = {
-  width: '100%',
-  height: '100%',
-  position: 'relative'
+    width: '100%',
+    height: '100%',
+    position: 'relative'
 };
 
 
@@ -53,7 +53,7 @@ var DEFAULT_OPTIONS = {
  * Ensure the passed argument is a proper unit (defaulting to px)
  */
 function ensureUnit(val) {
-  return val + (isNumber(val) ? 'px' : '');
+    return val + (isNumber(val) ? 'px' : '');
 }
 
 /**
@@ -105,19 +105,19 @@ function ensureUnit(val) {
  */
 function Viewer(options) {
 
-  options = assign({}, DEFAULT_OPTIONS, options);
+    options = assign({}, DEFAULT_OPTIONS, options);
 
-  this.moddle = this._createModdle(options);
+    this.moddle = this._createModdle(options);
 
-  this.container = this._createContainer(options);
+    this.container = this._createContainer(options);
 
-  /* <project-logo> */
+    /* <project-logo> */
 
-  addProjectLogo(this.container);
+    addProjectLogo(this.container);
 
-  /* </project-logo> */
+    /* </project-logo> */
 
-  this._init(this.container, this.moddle, options);
+    this._init(this.container, this.moddle, options);
 }
 
 inherits(Viewer, Diagram);
@@ -148,44 +148,50 @@ module.exports = Viewer;
  */
 Viewer.prototype.importXML = function(xml, done) {
 
-  // done is optional
-  done = done || function() {};
+    // done is optional
+    done = done || function() {};
 
-  var self = this;
+    var self = this;
 
-  // hook in pre-parse listeners +
-  // allow xml manipulation
-  xml = this._emit('import.parse.start', { xml: xml }) || xml;
+    // hook in pre-parse listeners +
+    // allow xml manipulation
+    xml = this._emit('import.parse.start', { xml: xml }) || xml;
 
-  this.moddle.fromXML(xml, 'bpmn:Definitions', function(err, definitions, context) {
+    this.moddle.fromXML(xml, 'bpmn:Definitions', function(err, definitions, context) {
 
-    // hook in post parse listeners +
-    // allow definitions manipulation
-    definitions = self._emit('import.parse.complete', {
-      error: err,
-      definitions: definitions,
-      context: context
-    }) || definitions;
+        // hook in post parse listeners +
+        // allow definitions manipulation
+        definitions = self._emit('import.parse.complete', {
+            error: err,
+            definitions: definitions,
+            context: context
+        }) || definitions;
 
-    if (err) {
-      err = checkValidationError(err);
+        if (err) {
+            err = checkValidationError(err);
 
-      self._emit('import.done', { error: err });
+            self._emit('import.done', { error: err });
 
-      return done(err);
-    }
+            return done(err);
+        }
 
-    var parseWarnings = context.warnings;
+        var parseWarnings = context.warnings;
 
-    self.importDefinitions(definitions, function(err, importWarnings) {
-      var allWarnings = [].concat(parseWarnings, importWarnings || []);
+        self.importDefinitions(definitions, function(err, importWarnings) {
+            var allWarnings = [].concat(parseWarnings, importWarnings || []);
 
-      self._emit('import.done', { error: err, warnings: allWarnings });
+            self._emit('import.done', { error: err, warnings: allWarnings });
 
-      done(err, allWarnings);
+            done(err, allWarnings);
+        });
     });
-  });
 };
+
+
+Viewer.prototype.resetCanvas = function() {
+    var canvas = this.get('canvas');
+    canvas.resetCanvas();
+}
 
 /**
  * Export the currently displayed BPMN 2.0 diagram as
@@ -199,18 +205,18 @@ Viewer.prototype.importXML = function(xml, done) {
  */
 Viewer.prototype.saveXML = function(options, done) {
 
-  if (!done) {
-    done = options;
-    options = {};
-  }
+    if (!done) {
+        done = options;
+        options = {};
+    }
 
-  var definitions = this.definitions;
+    var definitions = this.definitions;
 
-  if (!definitions) {
-    return done(new Error('no definitions loaded'));
-  }
+    if (!definitions) {
+        return done(new Error('no definitions loaded'));
+    }
 
-  this.moddle.toXML(definitions, options, done);
+    this.moddle.toXML(definitions, options, done);
 };
 
 /**
@@ -222,32 +228,32 @@ Viewer.prototype.saveXML = function(options, done) {
  */
 Viewer.prototype.saveSVG = function(options, done) {
 
-  if (!done) {
-    done = options;
-    options = {};
-  }
+    if (!done) {
+        done = options;
+        options = {};
+    }
 
-  var canvas = this.get('canvas');
+    var canvas = this.get('canvas');
 
-  var contentNode = canvas.getDefaultLayer(),
-      defsNode = domQuery('defs', canvas._svg);
+    var contentNode = canvas.getDefaultLayer(),
+        defsNode = domQuery('defs', canvas._svg);
 
-  var contents = innerSVG(contentNode),
-      defs = (defsNode && defsNode.outerHTML) || '';
+    var contents = innerSVG(contentNode),
+        defs = (defsNode && defsNode.outerHTML) || '';
 
-  var bbox = contentNode.getBBox();
+    var bbox = contentNode.getBBox();
 
-  var svg =
-    '<?xml version="1.0" encoding="utf-8"?>\n' +
-    '<!-- created with bpmn-js / http://bpmn.io -->\n' +
-    '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">\n' +
-    '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ' +
-         'width="' + bbox.width + '" height="' + bbox.height + '" ' +
-         'viewBox="' + bbox.x + ' ' + bbox.y + ' ' + bbox.width + ' ' + bbox.height + '" version="1.1">' +
-      defs + contents +
-    '</svg>';
+    var svg =
+        '<?xml version="1.0" encoding="utf-8"?>\n' +
+        '<!-- created with bpmn-js / http://bpmn.io -->\n' +
+        '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">\n' +
+        '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ' +
+        'width="' + bbox.width + '" height="' + bbox.height + '" ' +
+        'viewBox="' + bbox.x + ' ' + bbox.y + ' ' + bbox.width + ' ' + bbox.height + '" version="1.1">' +
+        defs + contents +
+        '</svg>';
 
-  done(null, svg);
+    done(null, svg);
 };
 
 /**
@@ -292,29 +298,29 @@ Viewer.prototype.saveSVG = function(options, done) {
 
 Viewer.prototype.importDefinitions = function(definitions, done) {
 
-  // use try/catch to not swallow synchronous exceptions
-  // that may be raised during model parsing
-  try {
+    // use try/catch to not swallow synchronous exceptions
+    // that may be raised during model parsing
+    try {
 
-    if (this.definitions) {
-      // clear existing rendered diagram
-      this.clear();
+        if (this.definitions) {
+            // clear existing rendered diagram
+            this.clear();
+        }
+
+        // update definitions
+        this.definitions = definitions;
+
+        // perform graphical import
+        Importer.importBpmnDiagram(this, definitions, done);
+    } catch (e) {
+
+        // handle synchronous errors
+        done(e);
     }
-
-    // update definitions
-    this.definitions = definitions;
-
-    // perform graphical import
-    Importer.importBpmnDiagram(this, definitions, done);
-  } catch (e) {
-
-    // handle synchronous errors
-    done(e);
-  }
 };
 
 Viewer.prototype.getModules = function() {
-  return this._modules;
+    return this._modules;
 };
 
 /**
@@ -323,11 +329,11 @@ Viewer.prototype.getModules = function() {
  */
 Viewer.prototype.destroy = function() {
 
-  // diagram destroy
-  Diagram.prototype.destroy.call(this);
+    // diagram destroy
+    Diagram.prototype.destroy.call(this);
 
-  // dom detach
-  domRemove(this.container);
+    // dom detach
+    domRemove(this.container);
 };
 
 /**
@@ -341,7 +347,7 @@ Viewer.prototype.destroy = function() {
  * @param {Object} [that]
  */
 Viewer.prototype.on = function(event, priority, callback, target) {
-  return this.get('eventBus').on(event, priority, callback, target);
+    return this.get('eventBus').on(event, priority, callback, target);
 };
 
 /**
@@ -351,74 +357,72 @@ Viewer.prototype.on = function(event, priority, callback, target) {
  * @param {Function} callback
  */
 Viewer.prototype.off = function(event, callback) {
-  this.get('eventBus').off(event, callback);
+    this.get('eventBus').off(event, callback);
 };
 
 Viewer.prototype.attachTo = function(parentNode) {
 
-  if (!parentNode) {
-    throw new Error('parentNode required');
-  }
+    if (!parentNode) {
+        throw new Error('parentNode required');
+    }
 
-  // ensure we detach from the
-  // previous, old parent
-  this.detach();
+    // ensure we detach from the
+    // previous, old parent
+    this.detach();
 
-  // unwrap jQuery if provided
-  if (parentNode.get && parentNode.constructor.prototype.jquery) {
-    parentNode = parentNode.get(0);
-  }
+    // unwrap jQuery if provided
+    if (parentNode.get && parentNode.constructor.prototype.jquery) {
+        parentNode = parentNode.get(0);
+    }
 
-  if (typeof parentNode === 'string') {
-    parentNode = domQuery(parentNode);
-  }
+    if (typeof parentNode === 'string') {
+        parentNode = domQuery(parentNode);
+    }
 
-  var container = this._container;
+    var container = this._container;
 
-  parentNode.appendChild(container);
+    parentNode.appendChild(container);
 
-  this._emit('attach', {});
+    this._emit('attach', {});
 };
 
 Viewer.prototype.detach = function() {
 
-  var container = this._container,
-      parentNode = container.parentNode;
+    var container = this._container,
+        parentNode = container.parentNode;
 
-  if (!parentNode) {
-    return;
-  }
+    if (!parentNode) {
+        return;
+    }
 
-  this._emit('detach', {});
+    this._emit('detach', {});
 
-  parentNode.removeChild(container);
+    parentNode.removeChild(container);
 };
 
 Viewer.prototype._init = function(container, moddle, options) {
 
-  this._container = container;
-  var baseModules = options.modules || this.getModules(),
-      additionalModules = options.additionalModules || [],
-      staticModules = [
-        {
-          bpmnjs: [ 'value', this ],
-          moddle: [ 'value', moddle ]
-        }
-      ];
+    this._container = container;
+    var baseModules = options.modules || this.getModules(),
+        additionalModules = options.additionalModules || [],
+        staticModules = [{
+            bpmnjs: ['value', this],
+            moddle: ['value', moddle]
+        }];
 
-  var diagramModules = [].concat(staticModules, baseModules, additionalModules);
+    var diagramModules = [].concat(staticModules, baseModules, additionalModules);
 
-  var diagramOptions = assign(omit(options, 'additionalModules'), {
-    canvas: assign({}, options.canvas, { container: container }),
-    modules: diagramModules
-  });
+    var diagramOptions = assign(omit(options, 'additionalModules'), {
+        canvas: assign({}, options.canvas, { container: container }),
+        modules: diagramModules
+    });
 
-  // invoke diagram constructor
-  Diagram.call(this, diagramOptions);
+    // invoke diagram constructor
+    Diagram.call(this, diagramOptions);
 
-  if (options && options.container) {
-    this.attachTo(options.container);
-  }
+    if (options && options.container) {
+        this.attachTo(options.container);
+    }
 };
 
 /**
@@ -430,35 +434,35 @@ Viewer.prototype._init = function(container, moddle, options) {
  * @return {Object} event processing result (if any)
  */
 Viewer.prototype._emit = function(type, event) {
-  return this.get('eventBus').fire(type, event);
+    return this.get('eventBus').fire(type, event);
 };
 
 Viewer.prototype._createContainer = function(options) {
 
-  var container = domify('<div class="bjs-container"></div>');
+    var container = domify('<div class="bjs-container"></div>');
 
-  assign(container.style, {
-    width: ensureUnit(options.width),
-    height: ensureUnit(options.height),
-    position: options.position
-  });
+    assign(container.style, {
+        width: ensureUnit(options.width),
+        height: ensureUnit(options.height),
+        position: options.position
+    });
 
-  return container;
+    return container;
 };
 
 Viewer.prototype._createModdle = function(options) {
-  var moddleOptions = assign({}, this._moddleExtensions, options.moddleExtensions);
+    var moddleOptions = assign({}, this._moddleExtensions, options.moddleExtensions);
 
-  return new BpmnModdle(moddleOptions);
+    return new BpmnModdle(moddleOptions);
 };
 
 
 // modules the viewer is composed of
 Viewer.prototype._modules = [
-  require('./core'),
-  require('diagram-js/lib/i18n/translate'),
-  require('diagram-js/lib/features/selection'),
-  require('diagram-js/lib/features/overlays')
+    require('./core'),
+    require('diagram-js/lib/i18n/translate'),
+    require('diagram-js/lib/features/selection'),
+    require('diagram-js/lib/features/overlays')
 ];
 
 // default moddle extensions the viewer is composed of
@@ -478,26 +482,26 @@ var PoweredBy = require('./util/PoweredByUtil'),
  * @param {Element} container
  */
 function addProjectLogo(container) {
-  var logoData = PoweredBy.BPMNIO_LOGO;
+    var logoData = PoweredBy.BPMNIO_LOGO;
 
-  var linkMarkup =
-    '<a href="http://bpmn.io" ' +
-       'target="_blank" ' +
-       'class="bjs-powered-by" ' +
-       'title="Powered by bpmn.io" ' +
-       'style="position: absolute; bottom: 15px; right: 15px; z-index: 100">' +
+    var linkMarkup =
+        '<a href="http://bpmn.io" ' +
+        'target="_blank" ' +
+        'class="bjs-powered-by" ' +
+        'title="Powered by bpmn.io" ' +
+        'style="position: absolute; bottom: 15px; right: 15px; z-index: 100">' +
         '<img src="data:image/png;base64,' + logoData + '">' +
-    '</a>';
+        '</a>';
 
-  var linkElement = domify(linkMarkup);
+    var linkElement = domify(linkMarkup);
 
-  container.appendChild(linkElement);
+    container.appendChild(linkElement);
 
-  domEvent.bind(linkElement, 'click', function(event) {
-    PoweredBy.open();
+    domEvent.bind(linkElement, 'click', function(event) {
+        PoweredBy.open();
 
-    event.preventDefault();
-  });
+        event.preventDefault();
+    });
 }
 
 /* </project-logo> */

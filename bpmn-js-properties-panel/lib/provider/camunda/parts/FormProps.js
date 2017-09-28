@@ -323,46 +323,62 @@ module.exports = function(group, element, bpmnFactory) {
         }
     }));
 
-    var datasources = [{
-            name: "OL_KAND",
-            object: "Inschrijving"
-        },
-        {
-            name: "OL_FACTUUR",
-            object: "Inschrijving"
-        },
-        {
-            name: "OL_KOSTEN",
-            object: "Cursus"
+    // var datasources = [{
+    //         name: "OL_KAND",
+    //         object: "Inschrijving"
+    //     },
+    //     {
+    //         name: "OL_FACTUUR",
+    //         object: "Inschrijving"
+    //     },
+    //     {
+    //         name: "OL_KOSTEN",
+    //         object: "Cursus"
+    //     }
+    // ];
+
+    var datasources = window.datasources;
+
+
+    if (datasources !== [] && !is(element, 'bpmn:UserTask')) {
+        var datasourceOptions = [];
+
+        function compare(a, b) {
+            if (a.name < b.name)
+                return -1;
+            if (a.name > b.name)
+                return 1;
+            return 0;
         }
-    ];
 
-    function filterDatasources(datasources, viperobject) {
-        var filteredDatasources = [];
-        datasources.forEach(function(a) {
-            if (a.object === viperobject) {
-                filteredDatasources.push(a);
-            }
-        });
-        return filteredDatasources;
-    };
+        function filterDatasources(datasources, viperobject) {
+            var filteredDatasources = [];
+            datasources.forEach(function(a) {
+                if (a.dataObject === null) {
+                    a.dataObject = "test";
+                }
+                if (a.dataObject === viperobject) {
+                    filteredDatasources.push(a);
+                }
+            });
+            filteredDatasources.sort(compare)
+            return filteredDatasources;
+        };
 
-    function getSelectOptions(datasources) {
-        var selectoptions = [];
-        datasources.forEach(function(a) {
-            selectoptions.push({ name: a.name, value: a.name });
-        });
-        return selectoptions;
-    };
+        function getSelectOptions(datasources) {
+            var selectoptions = [];
+            datasources.forEach(function(a) {
+                selectoptions.push({ name: a.name, value: a.name });
+            });
+            return selectoptions;
+        };
 
-    var datasourceOptions = []
-    try {
-        var viperobject = element.businessObject.Object;
-        var filterdDatasources = filterDatasources(datasources, viperobject);
-        datasourceOptions = getSelectOptions(filterdDatasources);
-    } catch (e) {}
+        try {
+            var viperobject = element.businessObject.Object;
+            var filterdDatasources = filterDatasources(datasources, viperobject);
+            datasourceOptions = getSelectOptions(filterdDatasources);
+        } catch (e) {}
 
-    if (!is(element, 'bpmn:UserTask')) {
         group.entries.push(entryFactory.comboBox({
             id: 'form-field-datasource',
             label: 'Datasource',
@@ -392,6 +408,8 @@ module.exports = function(group, element, bpmnFactory) {
             }
         }));
     }
+
+
 
     // [FormData] form field defaultValue text input field
     group.entries.push(formFieldTextField({
