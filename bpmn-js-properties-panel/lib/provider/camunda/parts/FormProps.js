@@ -368,7 +368,7 @@ module.exports = function(group, element, bpmnFactory) {
         function getSelectOptions(datasources) {
             var selectoptions = [];
             datasources.forEach(function(a) {
-                selectoptions.push({ name: a.name, value: a.name });
+                selectoptions.push({ name: a.name, value: a.name, ds_id: a.ds_id });
             });
             return selectoptions;
         };
@@ -400,7 +400,6 @@ module.exports = function(group, element, bpmnFactory) {
                     formData = getExtensionElements(getBusinessObject(element), 'camunda:FormData')[0],
                     commands = [];
                 commands.push(cmdHelper.updateBusinessObject(element, selectedFormField, values));
-
                 return commands;
             },
             hidden: function(element, node) {

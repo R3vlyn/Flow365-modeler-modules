@@ -6,15 +6,13 @@
         "tagAlias": "lowerCase"
     },
     "associations": [],
-    "types": [
-        {
+    "types": [{
             "name": "InOutBinding",
             "superClass": [
                 "Element"
             ],
             "isAbstract": true,
-            "properties": [
-                {
+            "properties": [{
                     "name": "source",
                     "isAttr": true,
                     "type": "String"
@@ -67,8 +65,7 @@
                 "bpmn:Gateway",
                 "bpmn:Event"
             ],
-            "properties": [
-                {
+            "properties": [{
                     "name": "async",
                     "isAttr": true,
                     "type": "Boolean",
@@ -101,13 +98,11 @@
                 "bpmn:Process",
                 "camunda:AsyncCapable"
             ],
-            "properties": [
-                {
-                    "name": "jobPriority",
-                    "isAttr": true,
-                    "type": "String"
-                }
-            ]
+            "properties": [{
+                "name": "jobPriority",
+                "isAttr": true,
+                "type": "String"
+            }]
         },
         {
             "name": "SignalEventDefinition",
@@ -115,14 +110,12 @@
             "extends": [
                 "bpmn:SignalEventDefinition"
             ],
-            "properties": [
-                {
-                    "name": "async",
-                    "isAttr": true,
-                    "type": "Boolean",
-                    "default": false
-                }
-            ]
+            "properties": [{
+                "name": "async",
+                "isAttr": true,
+                "type": "Boolean",
+                "default": false
+            }]
         },
         {
             "name": "ErrorEventDefinition",
@@ -130,8 +123,7 @@
             "extends": [
                 "bpmn:ErrorEventDefinition"
             ],
-            "properties": [
-                {
+            "properties": [{
                     "name": "errorCodeVariable",
                     "isAttr": true,
                     "type": "String"
@@ -148,12 +140,10 @@
             "superClass": [
                 "Element"
             ],
-            "properties": [
-                {
-                    "name": "resourceAssignmentExpression",
-                    "type": "bpmn:ResourceAssignmentExpression"
-                }
-            ]
+            "properties": [{
+                "name": "resourceAssignmentExpression",
+                "type": "bpmn:ResourceAssignmentExpression"
+            }]
         },
         {
             "name": "FormSupported",
@@ -162,8 +152,7 @@
                 "bpmn:StartEvent",
                 "bpmn:UserTask"
             ],
-            "properties": [
-                {
+            "properties": [{
                     "name": "formHandlerClass",
                     "isAttr": true,
                     "type": "String"
@@ -179,13 +168,11 @@
             "name": "Initiator",
             "isAbstract": true,
             "extends": ["bpmn:StartEvent"],
-            "properties": [
-                {
-                    "name": "initiator",
-                    "isAttr": true,
-                    "type": "String"
-                }
-            ]
+            "properties": [{
+                "name": "initiator",
+                "isAttr": true,
+                "type": "String"
+            }]
         },
         {
             "name": "ScriptTask",
@@ -193,8 +180,7 @@
             "extends": [
                 "bpmn:ScriptTask"
             ],
-            "properties": [
-                {
+            "properties": [{
                     "name": "resultVariable",
                     "isAttr": true,
                     "type": "String"
@@ -212,8 +198,7 @@
             "extends": [
                 "bpmn:Process"
             ],
-            "properties": [
-                {
+            "properties": [{
                     "name": "candidateStarterGroups",
                     "isAttr": true,
                     "type": "String"
@@ -236,13 +221,11 @@
             "extends": [
                 "bpmn:EscalationEventDefinition"
             ],
-            "properties": [
-                {
-                    "name": "escalationCodeVariable",
-                    "isAttr": true,
-                    "type": "String"
-                }
-            ]
+            "properties": [{
+                "name": "escalationCodeVariable",
+                "isAttr": true,
+                "type": "String"
+            }]
         },
         {
             "name": "FormalExpression",
@@ -250,19 +233,16 @@
             "extends": [
                 "bpmn:FormalExpression"
             ],
-            "properties": [
-                {
-                    "name": "resource",
-                    "isAttr": true,
-                    "type": "String"
-                }
-            ]
+            "properties": [{
+                "name": "resource",
+                "isAttr": true,
+                "type": "String"
+            }]
         },
         {
             "name": "Assignable",
             "extends": ["bpmn:UserTask"],
-            "properties": [
-                {
+            "properties": [{
                     "name": "assignee",
                     "isAttr": true,
                     "type": "String"
@@ -302,8 +282,7 @@
         {
             "name": "CallActivity",
             "extends": ["bpmn:CallActivity"],
-            "properties": [
-                {
+            "properties": [{
                     "name": "calledElementBinding",
                     "isAttr": true,
                     "type": "String",
@@ -360,8 +339,7 @@
                 "bpmn:SendTask",
                 "bpmn:MessageEventDefinition"
             ],
-            "properties": [
-                {
+            "properties": [{
                     "name": "expression",
                     "isAttr": true,
                     "type": "String"
@@ -388,8 +366,7 @@
             "extends": [
                 "bpmn:BusinessRuleTask"
             ],
-            "properties": [
-                {
+            "properties": [{
                     "name": "decisionRef",
                     "isAttr": true,
                     "type": "String"
@@ -423,8 +400,7 @@
             "extends": [
                 "camunda:ServiceTaskLike"
             ],
-            "properties": [
-                {
+            "properties": [{
                     "name": "type",
                     "isAttr": true,
                     "type": "String"
@@ -443,13 +419,11 @@
                     "name": "runscript",
                     "isAttr": true,
                     "type": "String",
-                    "properties": [
-                        {
-                            "name": "variableval",
-                            "type": "String",
-                            "isAttr": true
-                        }
-                    ]
+                    "properties": [{
+                        "name": "variableval",
+                        "type": "String",
+                        "isAttr": true
+                    }]
                 },
                 {
                     "name": "fields",
@@ -464,34 +438,29 @@
                 "bpmn:Process",
                 "camunda:ExternalCapable"
             ],
-            "properties": [
-                {
-                    "name": "taskPriority",
-                    "isAttr": true,
-                    "type": "String"
-                }
-            ]
+            "properties": [{
+                "name": "taskPriority",
+                "isAttr": true,
+                "type": "String"
+            }]
         },
         {
             "name": "Properties",
             "superClass": [
                 "Element"
             ],
-            "properties": [
-                {
-                    "name": "values",
-                    "type": "Property",
-                    "isMany": true
-                }
-            ]
+            "properties": [{
+                "name": "values",
+                "type": "Property",
+                "isMany": true
+            }]
         },
         {
             "name": "Property",
             "superClass": [
                 "Element"
             ],
-            "properties": [
-                {
+            "properties": [{
                     "name": "id",
                     "type": "String",
                     "isAttr": true
@@ -513,8 +482,7 @@
             "superClass": [
                 "Element"
             ],
-            "properties": [
-                {
+            "properties": [{
                     "name": "inputOutput",
                     "type": "InputOutput"
                 },
@@ -529,8 +497,7 @@
             "superClass": [
                 "Element"
             ],
-            "properties": [
-                {
+            "properties": [{
                     "name": "inputOutput",
                     "type": "InputOutput"
                 },
@@ -552,8 +519,7 @@
         },
         {
             "name": "InputOutputParameter",
-            "properties": [
-                {
+            "properties": [{
                     "name": "name",
                     "isAttr": true,
                     "type": "String"
@@ -576,29 +542,24 @@
         {
             "name": "List",
             "superClass": ["InputOutputParameterDefinition"],
-            "properties": [
-                {
-                    "name": "items",
-                    "isMany": true,
-                    "type": "InputOutputParameterDefinition"
-                }
-            ]
+            "properties": [{
+                "name": "items",
+                "isMany": true,
+                "type": "InputOutputParameterDefinition"
+            }]
         },
         {
             "name": "Map",
             "superClass": ["InputOutputParameterDefinition"],
-            "properties": [
-                {
-                    "name": "entries",
-                    "isMany": true,
-                    "type": "Entry"
-                }
-            ]
+            "properties": [{
+                "name": "entries",
+                "isMany": true,
+                "type": "Entry"
+            }]
         },
         {
             "name": "Entry",
-            "properties": [
-                {
+            "properties": [{
                     "name": "key",
                     "isAttr": true,
                     "type": "String"
@@ -619,8 +580,7 @@
             "superClass": [
                 "InputOutputParameterDefinition"
             ],
-            "properties": [
-                {
+            "properties": [{
                     "name": "id",
                     "isAttr": true,
                     "type": "String"
@@ -640,8 +600,7 @@
         {
             "name": "Script",
             "superClass": ["InputOutputParameterDefinition"],
-            "properties": [
-                {
+            "properties": [{
                     "name": "scriptFormat",
                     "isAttr": true,
                     "type": "String"
@@ -661,8 +620,7 @@
         {
             "name": "Field",
             "superClass": ["Element"],
-            "properties": [
-                {
+            "properties": [{
                     "name": "name",
                     "isAttr": true,
                     "type": "String"
@@ -695,8 +653,7 @@
             "isAbstract": true,
             "extends": ["bpmn:MultiInstanceLoopCharacteristics"],
             "superClass": ["camunda:AsyncCapable"],
-            "properties": [
-                {
+            "properties": [{
                     "name": "collection",
                     "isAttr": true,
                     "type": "String"
@@ -711,19 +668,16 @@
         {
             "name": "FailedJobRetryTimeCycle",
             "superClass": ["Element"],
-            "properties": [
-                {
-                    "name": "body",
-                    "isBody": true,
-                    "type": "String"
-                }
-            ]
+            "properties": [{
+                "name": "body",
+                "isBody": true,
+                "type": "String"
+            }]
         },
         {
             "name": "ExecutionListener",
             "superClass": ["Element"],
-            "properties": [
-                {
+            "properties": [{
                     "name": "expression",
                     "isAttr": true,
                     "type": "String"
@@ -757,8 +711,7 @@
         {
             "name": "TaskListener",
             "superClass": ["Element"],
-            "properties": [
-                {
+            "properties": [{
                     "name": "expression",
                     "isAttr": true,
                     "type": "String"
@@ -792,8 +745,7 @@
         {
             "name": "FormProperty",
             "superClass": ["Element"],
-            "properties": [
-                {
+            "properties": [{
                     "name": "id",
                     "type": "String",
                     "isAttr": true
@@ -853,8 +805,7 @@
         {
             "name": "FormData",
             "superClass": ["Element"],
-            "properties": [
-                {
+            "properties": [{
                     "name": "fields",
                     "type": "FormField",
                     "isMany": true
@@ -869,8 +820,7 @@
         {
             "name": "FormField",
             "superClass": ["Element"],
-            "properties": [
-                {
+            "properties": [{
                     "name": "id",
                     "type": "String",
                     "isAttr": true
@@ -925,19 +875,16 @@
         {
             "name": "Validation",
             "superClass": ["Element"],
-            "properties": [
-                {
-                    "name": "constraints",
-                    "type": "Constraint",
-                    "isMany": true
-                }
-            ]
+            "properties": [{
+                "name": "constraints",
+                "type": "Constraint",
+                "isMany": true
+            }]
         },
         {
             "name": "Constraint",
             "superClass": ["Element"],
-            "properties": [
-                {
+            "properties": [{
                     "name": "name",
                     "type": "String",
                     "isAttr": true
