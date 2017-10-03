@@ -351,6 +351,7 @@ module.exports = function(group, element, bpmnFactory) {
             return 0;
         }
 
+        //setting empty datasource-object as test
         function filterDatasources(datasources, viperobject) {
             var filteredDatasources = [];
             datasources.forEach(function(a) {
