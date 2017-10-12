@@ -11,6 +11,7 @@ var getBusinessObject = require('bpmn-js/lib/util/ModelUtil').getBusinessObject,
     utils = require('../../../Utils'),
     is = require('bpmn-js/lib/util/ModelUtil').is,
     find = require('lodash/collection/find'),
+    $ = require('jquery'),
     each = require('lodash/collection/forEach');
 
 function generateValueId() {
@@ -278,8 +279,8 @@ module.exports = function(group, element, bpmnFactory) {
         id: 'form-field-type',
         label: 'Type',
         selectOptions: [
-            { name: 'string', value: 'string' },
-            { name: 'long', value: 'long' },
+            { name: 'text', value: 'string' },
+            { name: 'number', value: 'long' },
             { name: 'boolean', value: 'boolean' },
             { name: 'date', value: 'date' }
         ],
@@ -337,7 +338,7 @@ module.exports = function(group, element, bpmnFactory) {
     //     }
     // ];
 
-    var datasources = window.datasources;
+    var datasources = $.parseJSON(sessionStorage.getItem("datasources"));
 
 
     if (datasources !== [] && !is(element, 'bpmn:UserTask')) {
@@ -351,7 +352,7 @@ module.exports = function(group, element, bpmnFactory) {
             return 0;
         }
 
-        //setting empty datasource-object as test
+        //setting dataobject as test for datasources that dont have a corresponding object yet
         function filterDatasources(datasources, viperobject) {
             var filteredDatasources = [];
             datasources.forEach(function(a) {
@@ -378,7 +379,7 @@ module.exports = function(group, element, bpmnFactory) {
             var viperobject = element.businessObject.Object;
             var filterdDatasources = filterDatasources(datasources, viperobject);
             datasourceOptions = getSelectOptions(filterdDatasources);
-        } catch (e) {}
+        } catch (e) { console.log(e); }
 
         group.entries.push(entryFactory.comboBox({
             id: 'form-field-datasource',

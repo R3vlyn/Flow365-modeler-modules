@@ -20,7 +20,7 @@ module.exports = function(element, bpmnFactory, options, scripts) {
             var variabledata = variables[i];
             partentries.push(
                 entryFactory.label({
-                    id: variabledata.name + "label",
+                    id: scriptname + variabledata.varid + "label",
                     divider: true,
                     labelText: variabledata.name + ", " + variabledata.type + ", " + variabledata.direction,
                     showLabel: function(element, node) {
@@ -28,7 +28,7 @@ module.exports = function(element, bpmnFactory, options, scripts) {
                     }
                 }),
                 entryFactory.textField({
-                    id: variabledata.name,
+                    id: scriptname + ";" + variabledata.varid,
                     label: variabledata.name,
                     modelProperty: 'value',
 
@@ -101,9 +101,12 @@ module.exports = function(element, bpmnFactory, options, scripts) {
 
     function createVariableEntries(scripts) {
         var entries = [];
-        for (var i = 0, len = scripts.length; i < len; i++) {
-            entries = entries.concat(addVariableEntry(scripts[i].variables, scripts[i].name));
+        if (scripts) {
+            for (var i = 0, len = scripts.length; i < len; i++) {
+                entries = entries.concat(addVariableEntry(scripts[i].variables, scripts[i].name));
+            }
         }
+
         return entries;
     }
 
